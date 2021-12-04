@@ -12,6 +12,9 @@ import org.openqa.selenium.WebElement;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.Assert.*;
+
+
 public class US25_ConfigureMenuStepDefs {
     US25_ConfigureMenuPage configureMenuPage= new US25_ConfigureMenuPage();
 
@@ -114,4 +117,28 @@ public class US25_ConfigureMenuStepDefs {
         Assert.assertEquals("verify the expected custom menu name is same with the actual", customMenuName, actualCustomMenuName);
 
     }
+
+    @Then("the system should display a window which has {string} message")
+    public void the_system_should_display_a_window_which_has_message(String expectedMessage) {
+
+        String actualMessage= configureMenuPage.errorText.getText();
+        Assert.assertEquals("verify error message as expected",expectedMessage, actualMessage);
+
+    }
+
+
+    @Then("the input boxes should return to red color")
+    public void the_input_boxes_should_return_to_red_color() {
+
+        if(configureMenuPage.nameInput.getText().isEmpty()){
+           assertTrue(configureMenuPage.errorColorName.isDisplayed());
+        }else if(configureMenuPage.linkInput.getText().isEmpty()){
+            assertTrue(configureMenuPage.errorColorLink.isDisplayed());
+        }else{
+            assertTrue(configureMenuPage.errorColorLink.isDisplayed());
+            assertTrue(configureMenuPage.errorColorName.isDisplayed());
+        }
+
+    }
+
 }
