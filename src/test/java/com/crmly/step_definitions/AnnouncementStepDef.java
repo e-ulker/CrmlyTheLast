@@ -65,6 +65,8 @@ public class AnnouncementStepDef {
         browserUtils.waitFor(1);
         announcementPage.Announcement.click();
 
+        announcementPage.DeleteAllContactButton.click();
+
 
     }
 
