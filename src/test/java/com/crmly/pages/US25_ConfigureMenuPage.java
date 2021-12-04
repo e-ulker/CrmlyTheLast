@@ -34,4 +34,6 @@ public class US25_ConfigureMenuPage extends BasePage{
     @FindBy(xpath = "//span[.='Cancel']")
     public WebElement cancelBtn;
 
+    
+
 }
