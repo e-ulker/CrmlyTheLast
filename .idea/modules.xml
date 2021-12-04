@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Crmly.iml" filepath="$PROJECT_DIR$/.idea/Crmly.iml" />
-      <module fileurl="file://$PROJECT_DIR$/CrmlyGroupProject/EU6CucumberSelenium.iml" filepath="$PROJECT_DIR$/CrmlyGroupProject/EU6CucumberSelenium.iml" />
     </modules>
   </component>
 </project>
