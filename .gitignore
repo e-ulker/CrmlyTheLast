@@ -3,5 +3,4 @@
 *.iml
 /.gitignore/
 /pom.xml/
-/CukesRunner.java/
-/.idea/
+/src/test/java/com/crmly/runners/
