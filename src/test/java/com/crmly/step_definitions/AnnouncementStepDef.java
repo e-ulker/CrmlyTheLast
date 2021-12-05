@@ -10,6 +10,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 
 import java.util.List;
@@ -63,6 +64,8 @@ public class AnnouncementStepDef {
         announcementPage.More.click();
         browserUtils.waitFor(1);
         announcementPage.Announcement.click();
+
+        announcementPage.DeleteAllContactButton.click();
 
 
     }
@@ -131,6 +134,63 @@ public class AnnouncementStepDef {
         browserUtils.waitFor(2);
         announcementPage.SendButton.click();
         browserUtils.waitFor(3);
+
+    }
+
+    @And("Write {string} as a content in Announcement")
+    public void writeAsAContentInAnnouncement(String content) {
+
+        Driver.get().switchTo().frame((0));
+
+        announcementPage.Content.sendKeys(content);
+
+        Driver.get().switchTo().defaultContent();
+
+    }
+
+    @And("Add {string} contact by clicking to Add more")
+    public void addContactByClickingToAddMore(String ContactName) {
+
+        browserUtils.waitFor(1);
+        announcementPage.AddMore.click();
+        browserUtils.waitFor(1);
+        announcementPage.EmployeesAndDepartments.click();
+        browserUtils.waitFor(1);
+        Driver.get().findElement(By.xpath("//div[@class='bx-finder-company-department-employee-info']//div[text()='"+ContactName+"']")).click();
+        Driver.get().findElement(By.xpath("//span[@class='popup-window-close-icon']")).click();
+
+    }
+
+    @And("User clicks send")
+    public void userClicksSend() {
+
+        browserUtils.waitFor(2);
+        announcementPage.SendButton.click();
+        browserUtils.waitFor(3);
+
+    }
+
+    @Then("User should be able to see sent Announcement {string} on the top of the Active Stream")
+    public void userShouldBeAbleToSeeSentAnnouncementOnTheTopOfTheActiveStream(String content) {
+
+        Assert.assertTrue(Driver.get().findElement(By.xpath("//div[(@class='feed-post-text-block-inner-inner' and text()='"+content+"')]")).isDisplayed());
+
+        browserUtils.waitFor(2);
+        announcementPage.ActiveMore.click();
+        browserUtils.waitFor(1);
+        announcementPage.ActiveDelete.click();
+        browserUtils.waitFor(1);
+        Alert alert = Driver.get().switchTo().alert();
+        browserUtils.waitFor(1);
+        alert.accept();
+        browserUtils.waitFor(1);
+
+    }
+
+    @Then("User should see the warning of message is not specified")
+    public void userShouldSeeTheWarningOfMessageIsNotSpecified() {
+
+        Assert.assertTrue(Driver.get().findElement(By.xpath("//span[text()='The message title is not specified']")).isDisplayed());
 
     }
 }

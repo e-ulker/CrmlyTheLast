@@ -1,3 +1,4 @@
-/.idea/
-/target/
-*.xml
+*.iml
+/.gitignore/
+/pom.xml/
+/src/test/java/com/crmly/runners/

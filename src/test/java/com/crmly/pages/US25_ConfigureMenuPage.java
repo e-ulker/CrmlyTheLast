@@ -16,7 +16,7 @@ public class US25_ConfigureMenuPage extends BasePage{
     @FindBy(css = ".menu-popup-item.menu-popup-no-icon ")
     public List<WebElement> configMenuOpt;
 
-    @FindBy(css = "#menu-self-item-popup")
+    @FindBy(xpath = "//span[.='Add custom menu item']") //span[.='Add custom menu item']  #menu-self-item-popup
     public WebElement addCustPopUp;
 
     @FindBy(css = "#menuOpenInNewPage")
@@ -33,5 +33,14 @@ public class US25_ConfigureMenuPage extends BasePage{
 
     @FindBy(xpath = "//span[.='Cancel']")
     public WebElement cancelBtn;
+
+    @FindBy(css = ".left-menu-confirm-popup")
+    public WebElement errorText;
+
+    @FindBy(css = ".menu-form-input.menu-form-input-error")
+    public WebElement errorColorName;
+
+    @FindBy(css = "menu-form-input menu-form-input-error")
+    public WebElement errorColorLink;
 
 }
