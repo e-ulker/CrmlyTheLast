@@ -49,6 +49,15 @@ public class AnnouncementPage {
     @FindBy(css = "button#blog-submit-button-save")
     public WebElement SendButton;
 
+    @FindBy(xpath = "//body[@contenteditable='true']")
+    public WebElement Content;
+
+    @FindBy(xpath = "(//span[@class='feed-post-more-text'])[1]")
+    public WebElement ActiveMore;
+
+    @FindBy(xpath = "//span[@class='menu-popup-item-text' and text()='Delete']")
+    public WebElement ActiveDelete;
+
 
 
 
