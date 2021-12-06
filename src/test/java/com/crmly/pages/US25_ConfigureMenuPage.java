@@ -43,4 +43,17 @@ public class US25_ConfigureMenuPage extends BasePage{
     @FindBy(css = "menu-form-input menu-form-input-error")
     public WebElement errorColorLink;
 
+    @FindBy(css = ".menu-fav-editable-btn.menu-favorites-btn.menu-fav-editable-btn-js.menu-fav-editable-btn-showed")
+    public WebElement penSign;
+
+    @FindBy(css = ".menu-popup-item-text")
+    public List<WebElement> menuItems;
+
+    @FindBy(xpath = "//span[.='Edit custom menu item']")
+    public WebElement EditCusMenuItem;
+
+    @FindBy(css = "#menu-self-item-popup")
+    public WebElement EditWindow;
+
+
 }
