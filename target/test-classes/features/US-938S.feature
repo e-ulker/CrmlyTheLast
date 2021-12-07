@@ -16,7 +16,7 @@ Feature: Assign tasks under Quick Navigate Menu
     And the user click on New Task
     Then the user click on the Visual Editor
     And Verify textbar is displayed
-  @selcan
+@selcan
   Scenario: the user can add a checklist item
 
     Given The user logged in
