@@ -54,9 +54,28 @@ Feature: Sending Announcement
     And User clicks send
     Then User should see the warning of message is not specified
 
-
+  @wipi
   Scenario: Verify that user shouldnt be able to send announcement without any contact.
     When User clicks Announcement subheading from More tab
     And Write "anything" as a content in Announcement
     And User clicks send
     Then User should see the warning of specify at least one person
+
+
+  Scenario Outline: Verify that insert videos by clicking on the video icon and entering the <VideoSource> video URL.
+    When User clicks Announcement subheading from More tab
+    And User clicks insert video icon
+    And User enters "<VideoURL>"
+    And User click Save button
+    Then User should be able to see inserted video "<VideoURL>"
+    Examples:
+      | VideoSource | VideoURL                                    |
+      | Youtube     | https://www.youtube.com/watch?v=k-7jJP7QFEM |
+      | Vimeo       | https://vimeo.com/26                        |
+
+
+  Scenario: Verify that user shouldn't be able to insert videos by clicking on the video icon and entering the invalid video URL.
+    When User clicks Announcement subheading from More tab
+    And User clicks insert video icon
+    And User enters invalid video URL "invalidvideo.com"
+    Then User should see the warning Incorrect URL

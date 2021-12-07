@@ -58,6 +58,18 @@ public class AnnouncementPage {
     @FindBy(xpath = "//span[@class='menu-popup-item-text' and text()='Delete']")
     public WebElement ActiveDelete;
 
+    @FindBy(xpath = "//span[@title='Insert video']")
+    public WebElement InsertVideoButton;
+
+    @FindBy(xpath = "//input[@id='video_idPostFormLHE_blogPostForm-source']")
+    public WebElement VideoURL;
+
+    @FindBy(xpath = "//input[@value='Save']")
+    public WebElement VideoSaveButton;
+
+    @FindBy(xpath = "(//div[@class='bx-core-popup-menu bx-core-popup-menu-bottom bx-core-popup-menu-level0 bx-core-popup-menu-no-icons bx-core-popup-menu-editor']//span[text()='Delete video'])[3]")
+    public WebElement DeleteVideo;
+
 
 
 
