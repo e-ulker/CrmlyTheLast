@@ -4,6 +4,7 @@ import com.crmly.pages.US_938DashboardPage;
 import com.crmly.pages.US_938TaskPage;
 import com.crmly.utilities.BrowserUtils;
 import com.crmly.utilities.Driver;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.JavascriptExecutor;
@@ -36,5 +37,16 @@ public class US_938StepDef {
     public void the_checkbox_is_clicked() {
 
         tasksPage.checkbox.isSelected();
+    }
+
+    @Then("the user click on the Visual Editor")
+    public void theUserClickOnTheVisualEditor() {
+     Driver.get().switchTo().frame(tasksPage.iframe);
+     tasksPage.visualEditor.click();
+    }
+
+    @And("Verify textbar is displayed")
+    public void verifyTextbarIsDisplayed() {
+     tasksPage.textbar.isDisplayed();
     }
 }
