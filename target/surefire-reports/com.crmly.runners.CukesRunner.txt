@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.crmly.runners.CukesRunner
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 13.635 s - in com.crmly.runners.CukesRunner
