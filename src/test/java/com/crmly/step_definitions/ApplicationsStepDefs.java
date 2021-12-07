@@ -8,6 +8,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class ApplicationsStepDefs {
 
     @Then("user should be able to display the new applications")
     public void userShouldBeAbleToDisplayTheNewApplications() {
-        Assert.assertTrue(application.newApplications.size()>0);
+        Assert.assertTrue(application.newApplications.size() > 0);
     }
 
     @And("user should be able to click VIEW")
@@ -51,7 +52,7 @@ public class ApplicationsStepDefs {
         String expectedWarningMessage = "Your request to install the app has been sent to\n" +
                 "your Bitrix24's administrators. Thank you!";
 
-        Assert.assertEquals(expectedWarningMessage,actualWarningMessage);
+        Assert.assertEquals(expectedWarningMessage, actualWarningMessage);
     }
 
     @Then("user should be able to display the application's features")
@@ -78,6 +79,64 @@ public class ApplicationsStepDefs {
                 Assert.assertEquals(titles.get(i), application.titleMenuTexts.get(i).getText());
             }
         }
+
+    }
+
+    @Then("User should be able to hide Webhooks")
+    public void userShouldBeAbleToHideWebhooks() {
+        application.moreBtn.click();
+        BrowserUtils.waitFor(2);
+        application.configureMenuTop.click();
+        application.webhooksEditBtn.click();
+        application.webhooksHideBtn.click();
+        BrowserUtils.waitFor(2);
+        Assert.assertFalse(application.webhooks.isDisplayed());
+    }
+
+    @And("User should be able to show Webhooks")
+    public void userShouldBeAbleToShowWebhooks() {
+        application.webhooksEditBtnForShow.click();
+        application.webhooksShowBtn.click();
+        BrowserUtils.waitFor(2);
+        Assert.assertTrue(application.webhooks.isDisplayed());
+    }
+
+    @Then("User should be able to add Marketplace to the left menu")
+    public void userShouldBeAbleToAddMarketplace() {
+        application.moreBtn.click();
+        application.configureMenuTop.click();
+        BrowserUtils.waitFor(2);
+        application.itemEditForMarketplace.click();
+        application.addToLeftMenu.click();
+        Assert.assertTrue(application.leftMenuMarketplace.isDisplayed());
+        
+    }
+
+    @And("User should be able to remove Marketplace from the left menu")
+    public void userShouldBeAbleToRemoveWebhooks() {
+
+        application.bottomConfigureMenu.click();
+        application.bottomConfigureMenuItems.click();
+        BrowserUtils.waitFor(2);
+        application.editIconForMarketPlace.click();
+        application.removeFromMenu.click();
+        BrowserUtils.waitFor(2);
+
+        for (WebElement contentMenuItem : application.contentMenuItems) {
+            Assert.assertNotEquals("Marketplace", contentMenuItem.getText());
+        }
+
+    }
+
+    @Then("User should be able to set Installed as the section home page")
+    public void userShouldBeAbleToSetInstalledAsTheSectionHomePage() {
+        application.moreBtn.click();
+        application.configureMenuTop.click();
+        application.editInstalled.click();
+        application.setAsSectionHomePage.click();
+        BrowserUtils.waitFor(2);
+
+        Assert.assertEquals("Installed", application.menuItems.get(0).getText());
 
     }
 }
