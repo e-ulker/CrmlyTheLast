@@ -63,7 +63,9 @@ Feature: Configure Menu
     Then custom menu link should be open in a new tab
 
 
+
   Scenario: User should see the options -AC4
+
     When user hover over to created menu which is "Google"
     And  clicks to pen sign
     Then system should display the items
@@ -71,6 +73,14 @@ Feature: Configure Menu
       | Delete custom item |
       | Edit               |
       | Rearrange          |
+
+
+  @nur
+    Scenario: User should see the edit custom menu -AC2
+      When user hover over to created menu which is "Google"
+      And  clicks to pen sign
+      And  clicks to "Edit" item
+      Then system should display "Edit custom menu item" window
 
 
   Scenario: User should see the edit custom menu -AC4
