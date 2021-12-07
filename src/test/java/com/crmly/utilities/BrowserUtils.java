@@ -44,8 +44,4 @@ public class BrowserUtils {
         actions.moveToElement(element).perform();
     }
 
-
-
-
-
 }
