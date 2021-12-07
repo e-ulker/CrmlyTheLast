@@ -2,6 +2,7 @@ package com.crmly.step_definitions;
 
 import com.crmly.pages.EmployeePage;
 import com.crmly.pages.LoginPage;
+import com.crmly.utilities.BrowserUtils;
 import com.crmly.utilities.ConfigurationReader;
 import com.crmly.utilities.Driver;
 import io.cucumber.java.en.And;
@@ -9,11 +10,6 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
-
-import java.util.List;
-import java.util.Random;
 
 
 public class EmployeeFunctionsStepDefs {
@@ -24,7 +20,7 @@ public class EmployeeFunctionsStepDefs {
     public void user_is_on_the_login_page() {
         String url = ConfigurationReader.get("url");
         Driver.get().get(url);
-        Assert.assertTrue(Driver.get().getTitle().contains("Authorization"));
+        //Assert.assertTrue(Driver.get().getTitle().contains("Authorization"));
     }
 
     @And("The user logs in with {string} username and {string} password")
@@ -67,4 +63,26 @@ public class EmployeeFunctionsStepDefs {
     public void userClicksAddButton() {
         employeePage.addBtn.click();
     }
+
+    @When("User navigates Find Employee tab")
+    public void userNavigatesFindEmployeeTab() {
+        employeePage.navigateToTab("Find Employee");
+        Assert.assertEquals("Find Employee", employeePage.FindEmp.getText());
+
+    }
+
+    @And("User writes an {string} in search box")
+    public void userWritesAnInSearchBox(String employeeName) {
+        employeePage.searchBar.sendKeys(employeeName);
+    }
+
+
+    @Then("User clicks search button")
+    public void userClicksSearchButton() {
+        employeePage.searchButton.click();
+        BrowserUtils.waitFor(3);
+    }
+
+
+
 }
