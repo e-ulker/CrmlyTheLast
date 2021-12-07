@@ -49,4 +49,25 @@ public class US_938StepDef {
     public void verifyTextbarIsDisplayed() {
      tasksPage.textbar.isDisplayed();
     }
+
+    @Then("the user click on the checklist")
+    public void theUserClickOnTheChecklist() {
+        Driver.get().switchTo().frame(tasksPage.iframe);
+        tasksPage.checklist.click();
+    }
+
+    @And("Write inside the Things to do box")
+    public void writeInsideTheThingsToDoBox() {
+        tasksPage.thingsToDoBox.sendKeys("Testcase");
+    }
+
+    @And("Click on the check sign")
+    public void clickOnTheCheckSign() {
+        tasksPage.checkSign.click();
+    }
+
+    @Then("Verify a checklist item is added")
+    public void verifyAChecklistItemIsAdded() {
+        tasksPage.checklistitem.isDisplayed();
+    }
 }
