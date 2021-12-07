@@ -32,7 +32,7 @@ Feature: Configure Menu
   Scenario: User should add custom menu -AC1
     When the user clicks configure menu option
     And  the user hits "Add custom menu item" option from the menu pop up
-    And  user adds custom menu as "Google" to redirect "www.google.com"
+    And  user adds custom menu as "Google" to redirect "google.com"
     Then hit the "Add" button on the add custom menu window
     And  verify "Google" custom menu is displayed on the menu items
 
@@ -52,18 +52,18 @@ Feature: Configure Menu
     Then hit the "Add" button on the add custom menu window
     Then the input boxes should return to red color
     Examples:
-      | name    | link           |
-      | YouTube |                |
-      |         | www.amazon.com |
-      |         |                |
+      | name    | link       |
+      | YouTube |            |
+      |         | amazon.com |
+      |         |            |
 
 
-  Scenario: User should open custom menu link in a new tab AC-2
+  Scenario: User should open custom menu link in a new tab -AC2
     When user clicks created custom menu which is "Google"
     Then custom menu link should be open in a new tab
 
 
-  Scenario: User should see the options
+  Scenario: User should see the options -AC4
     When user hover over to created menu which is "Google"
     And  clicks to pen sign
     Then system should display the items
@@ -72,11 +72,48 @@ Feature: Configure Menu
       | Edit               |
       | Rearrange          |
 
-  @nur
-    Scenario: User should see the edit custom menu
-      When user hover over to created menu which is "Google"
-      And  clicks to pen sign
-      And  clicks to "Edit" item
-      Then system should display "Edit custom menu item" window
 
+  Scenario: User should see the edit custom menu -AC4
+    When user hover over to created menu which is "Google"
+    And  clicks to pen sign
+    And  clicks to "Edit" item
+    Then system should display "Edit custom menu item" window
+
+
+  Scenario: User should edit custom menu  -AC4
+    When user hover over to created menu which is "Google"
+    And  clicks to pen sign
+    And  clicks to "Edit" item
+    And  user changes "Google" to "YouTube" inside the name input box
+    And  user changes "google.com" to "youtube.com" inside the link box
+    And  clicks to "Save" button inside the edit custom menu window
+    Then verify "YouTube" custom menu is displayed on the menu items
+
+
+  Scenario: User should be hide custom menu item  -AC5
+    When user hover over to created menu which is "YouTube"
+    And  clicks to pen sign
+    And  clicks to "Hide item" item
+    Then verify "YouTube" custom menu item is not displayed
+
+
+  Scenario: User should be see the hidden pop up window -AC6
+    When user clicks to more option
+    Then the hidden window should be display
+
+
+
+  Scenario: User should be see the default hidden items -AC6
+    When user clicks to more option
+    Then user should be able to see default options
+      | Applications |
+      | Workflows    |
+
+  @nur
+  Scenario: User should be able to show the custom item
+    When user clicks to more option
+    When user hovers over to created menu which is "YouTube"
+    And  clicks to hidden pen sign
+    And  clicks to "Show item" item
+    Then verify "YouTube" custom menu item is not hidden window
 

@@ -3,6 +3,7 @@ package com.crmly.step_definitions;
 import com.crmly.pages.US25_ConfigureMenuPage;
 import com.crmly.utilities.BrowserUtils;
 import com.crmly.utilities.Driver;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
@@ -93,9 +94,10 @@ public class US25_ConfigureMenuStepDefs {
 
     @When("user adds custom menu as {string} to redirect {string}")
     public void user_adds_custom_menu_as_to_redirect(String name, String link) {
+        String newLink="https://www."+link+"/";
 
         configureMenuPage.nameInput.sendKeys(name+ Keys.ENTER);
-        configureMenuPage.linkInput.sendKeys(link+Keys.ENTER);
+        configureMenuPage.linkInput.sendKeys(newLink+Keys.ENTER);
 
     }
 
@@ -169,7 +171,7 @@ public class US25_ConfigureMenuStepDefs {
             }
         }
 
-        Assert.assertFalse(Driver.get().getTitle().equals(titleBeforeNewTab));
+        assertNotEquals("Make sure the titles re not same",Driver.get().getTitle(),titleBeforeNewTab);
 
         System.out.println("titleBeforeNewTab = " + titleBeforeNewTab);
         System.out.println("New Tab Title = " + Driver.get().getTitle());
@@ -219,6 +221,9 @@ public class US25_ConfigureMenuStepDefs {
             case "Rearrange":
                 Driver.get().findElement(By.xpath(itemPath)).click();
                 break;
+            case "Show item":
+                Driver.get().findElement(By.xpath(itemPath)).click();
+                break;
             default:
                 Exception e= new Exception();
                 e.printStackTrace();
@@ -235,4 +240,103 @@ public class US25_ConfigureMenuStepDefs {
     }
 
 
+
+    @When("user changes {string} to {string} inside the name input box")
+    public void user_changes_to_inside_the_name_input_box(String oldName, String newName) {
+
+        configureMenuPage.nameInput.sendKeys(Keys.CONTROL+"a");
+        configureMenuPage.nameInput.sendKeys(Keys.BACK_SPACE);
+        configureMenuPage.nameInput.sendKeys(newName);
+
+        assertNotEquals("make sure old name changed to new one",oldName, newName);
+
+    }
+    @When("user changes {string} to {string} inside the link box")
+    public void user_changes_to_inside_the_link_box(String oldLink, String newLink) {
+
+        configureMenuPage.linkInput.sendKeys(Keys.CONTROL+ "a");
+        configureMenuPage.linkInput.sendKeys(Keys.BACK_SPACE);
+        configureMenuPage.linkInput.sendKeys(newLink);
+
+        assertNotEquals("make sure old link changed to new one", oldLink, newLink);
+
+    }
+    @When("clicks to {string} button inside the edit custom menu window")
+    public void clicks_to_button_inside_the_edit_custom_menu_window(String button) {
+        String btnPath= "//span[.='"+button+"']";
+
+        switch (button){
+            case "Save":
+                Driver.get().findElement(By.xpath(btnPath)).click();
+                break;
+            case "Cancel":
+                Driver.get().findElement(By.xpath(btnPath)).click();
+                break;
+            default:
+                System.out.println("Something is wrong clicking to button SAVE or CANCEL");
+        }
+
+    }
+
+
+    @Then("verify {string} custom menu item is not displayed")
+    public void verify_custom_menu_item_is_not_displayed(String custMenuName) {
+        String custPath= "//span[contains(text(),'"+custMenuName+"')]";
+
+        assertFalse("Make sure custom menu name is NOT displayed", Driver.get().findElement(By.xpath(custPath)).isDisplayed());
+    }
+
+
+
+    @When("user clicks to more option")
+    public void user_clicks_to_more_option() {
+       configureMenuPage.more.click();
+    }
+
+
+    @Then("the hidden window should be display")
+    public void the_hidden_window_should_be_display() {
+       configureMenuPage.hiddenWindow.isDisplayed();
+       assertTrue(configureMenuPage.hiddenWindow.isDisplayed());
+    }
+
+
+    @Then("user should be able to see default options")
+    public void user_should_be_able_to_see_default_options(List<String> expectedList) {
+       List<String> actualList= new ArrayList<>();
+
+       for (WebElement item: configureMenuPage.hiddenItems){
+           BrowserUtils.waitFor(3);
+           actualList.add(item.getText());
+       }
+        System.out.println("expectedList = " + expectedList);
+        System.out.println("actualList = " + actualList);
+        if(actualList.contains(expectedList.get(0)) && actualList.contains(expectedList.get(1))){
+            assertTrue(true);
+        }else{
+            assertTrue(false);
+        }
+    }
+
+
+
+    @Then("verify {string} custom menu item is not hidden window")
+    public void verify_custom_menu_item_is_not_hidden_window(String custMenuName) {
+        assertFalse(configureMenuPage.hiddenItems.contains(custMenuName));
+
+    }
+
+
+    @When("user hovers over to created menu which is {string}")
+    public void userHoversOverToCreatedMenuWhichIs(String title) {
+        WebElement createdCustMenu= Driver.get().findElement(By.xpath("//a[@title='"+title+"']"));
+        BrowserUtils.hover(createdCustMenu);
+        //BrowserUtils.waitForClickablility(configureMenuPage.penSignHidden,5);
+    }
+
+    @And("clicks to hidden pen sign")
+    public void clicksToHiddenPenSign() {
+        BrowserUtils.hover(configureMenuPage.penSignHidden);
+        configureMenuPage.penSignHidden.click();
+    }
 }
