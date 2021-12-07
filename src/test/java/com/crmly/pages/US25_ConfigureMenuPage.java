@@ -43,7 +43,7 @@ public class US25_ConfigureMenuPage extends BasePage{
     @FindBy(css = "menu-form-input menu-form-input-error")
     public WebElement errorColorLink;
 
-    @FindBy(css = ".menu-fav-editable-btn.menu-favorites-btn.menu-fav-editable-btn-js.menu-fav-editable-btn-showed")
+    @FindBy(css = ".menu-fav-editable-btn.menu-favorites-btn.menu-fav-editable-btn-js.menu-fav-editable-btn-showed") // .menu-fav-editable-btn.menu-favorites-btn.menu-fav-editable-btn-js.menu-fav-editable-btn-showed
     public WebElement penSign;
 
     @FindBy(css = ".menu-popup-item-text")
@@ -54,6 +54,18 @@ public class US25_ConfigureMenuPage extends BasePage{
 
     @FindBy(css = "#menu-self-item-popup")
     public WebElement EditWindow;
+
+    @FindBy(css = "#left-menu-more-btn")
+    public WebElement more;
+
+    @FindBy(css = "#left-menu-hidden-items-block")
+    public WebElement hiddenWindow;
+
+    @FindBy(xpath = "//ul[@id='left-menu-hidden-items-list']//li[@class='menu-item-block']//a//span[@class='menu-item-link-text']")
+    public List<WebElement> hiddenItems;
+
+    @FindBy(xpath = "//li[@id='bx_left_menu_1587574693']//span[1]")
+    public WebElement penSignHidden;
 
 
 }
