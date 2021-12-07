@@ -1,5 +1,6 @@
+@selcan
 Feature: Assign tasks under Quick Navigate Menu
-  @selcan
+
   Scenario: the user click on the High Priority checkbox
 
 
