@@ -57,3 +57,42 @@ Feature: As a user, I can use Applications menu
       | helpDesk      |
       | humanResource |
       | marketing     |
+
+   @done
+  Scenario Outline: "<user>" should be able to hide and show Webhooks from Configure Menu
+    Given user should be able to login as "<user>" successfully
+    When user should be able to click "Applications"
+    Then User should be able to hide Webhooks
+     And User should be able to show Webhooks
+
+    Examples:
+      | user          |
+      | helpDesk      |
+      | humanResource |
+      | marketing     |
+
+
+  @done
+  Scenario Outline: "<user>" should be able to add and remove 'Marketplace' to the left menu
+    Given user should be able to login as "<user>" successfully
+    When user should be able to click "Applications"
+    Then User should be able to add Marketplace to the left menu
+    And User should be able to remove Marketplace from the left menu
+
+    Examples:
+      | user          |
+      | helpDesk      |
+      | humanResource |
+      | marketing     |
+
+  @done
+  Scenario Outline: "<user>" should be able to set Installed as the section home page
+    Given user should be able to login as "<user>" successfully
+    When user should be able to click "Applications"
+    Then User should be able to set Installed as the section home page
+
+    Examples:
+      | user          |
+      | helpDesk      |
+      | humanResource |
+      | marketing     |
