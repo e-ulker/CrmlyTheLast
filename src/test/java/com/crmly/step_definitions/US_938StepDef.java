@@ -70,4 +70,21 @@ public class US_938StepDef {
     public void verifyAChecklistItemIsAdded() {
         tasksPage.checklistitem.isDisplayed();
     }
+
+    @And("Things to do box is opened")
+    public void thingsToDoBoxIsOpened() {
+        tasksPage.thingsToDoBox.isDisplayed();
+    }
+
+    @And("Click on the seperator")
+    public void clickOnTheSeperator() {
+        tasksPage.separator.click();
+
+    }
+
+    @Then("Verify  the seperator is added")
+    public void verifyTheSeperatorIsAdded() {
+        tasksPage.separatorline.isDisplayed();
+
+    }
 }
