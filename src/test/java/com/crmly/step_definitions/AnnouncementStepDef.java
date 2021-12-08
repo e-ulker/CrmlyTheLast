@@ -111,8 +111,10 @@ public class AnnouncementStepDef {
     @And("User clicks Add More and type {string} as a contact")
     public void userClicksAddMoreAndTypeAsAContact(String contactName) {
 
-        announcementPage.DeleteAllContactButton.click();
+
+        browserUtils.waitFor(1);
         announcementPage.AddPerson.click();
+        browserUtils.waitFor(1);
         announcementPage.ContactInputbox.sendKeys(contactName);
 
         browserUtils.waitFor(5);
@@ -233,6 +235,8 @@ public class AnnouncementStepDef {
         browserUtils.waitFor(2);
         Assert.assertTrue("User should see the inserted videos",Driver.get().findElement(By.xpath("//link[@href='"+videoUrlLink+"']")).isEnabled());
         announcementPage.DeleteVideo.click();
+
+        Driver.get().switchTo().defaultContent();
 
     }
 
