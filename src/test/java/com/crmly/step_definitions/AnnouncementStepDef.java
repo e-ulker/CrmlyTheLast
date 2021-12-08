@@ -111,8 +111,10 @@ public class AnnouncementStepDef {
     @And("User clicks Add More and type {string} as a contact")
     public void userClicksAddMoreAndTypeAsAContact(String contactName) {
 
-        announcementPage.DeleteAllContactButton.click();
+
+        browserUtils.waitFor(1);
         announcementPage.AddPerson.click();
+        browserUtils.waitFor(1);
         announcementPage.ContactInputbox.sendKeys(contactName);
 
         browserUtils.waitFor(5);
@@ -191,6 +193,67 @@ public class AnnouncementStepDef {
     public void userShouldSeeTheWarningOfMessageIsNotSpecified() {
 
         Assert.assertTrue(Driver.get().findElement(By.xpath("//span[text()='The message title is not specified']")).isDisplayed());
+
+    }
+
+    @And("User clicks insert video icon")
+    public void userClicksInsertVideoIcon() {
+
+        announcementPage.InsertVideoButton.click();
+
+    }
+
+    @And("User enters {string}")
+    public void userEnters(String videoURL) {
+
+        browserUtils.waitFor(1);
+        announcementPage.VideoURL.sendKeys(videoURL);
+        browserUtils.waitFor(13);
+
+    }
+
+    @And("User click Save button")
+    public void userClickSaveButton() {
+
+        announcementPage.VideoSaveButton.click();
+
+    }
+
+    @Then("User should be able to see inserted video {string}")
+    public void userShouldBeAbleToSeeInsertedVideo(String videoUrlLink) {
+
+        int size = Driver.get().findElements(By.tagName("iframe")).size();
+
+        //  for(int i=0; i<=size; i++){
+        //  Driver.get().switchTo().frame(i);
+        //  int total=Driver.get().findElements(By.xpath("//link[@href='"+videoUrlLink+"']")).size();
+        //  System.out.println(total);
+        //  Driver.get().switchTo().defaultContent();}
+
+        browserUtils.waitFor(2);
+        Driver.get().switchTo().frame((size-1));
+        browserUtils.waitFor(2);
+        Assert.assertTrue("User should see the inserted videos",Driver.get().findElement(By.xpath("//link[@href='"+videoUrlLink+"']")).isEnabled());
+        announcementPage.DeleteVideo.click();
+
+        Driver.get().switchTo().defaultContent();
+
+    }
+
+    @And("User enters invalid video URL {string}")
+    public void userEntersInvalidVideoURL(String invalidVideoURL) {
+
+        browserUtils.waitFor(1);
+        announcementPage.VideoURL.sendKeys(invalidVideoURL);
+        browserUtils.waitFor(2);
+
+
+    }
+
+    @Then("User should see the warning Incorrect URL")
+    public void userShouldSeeTheWarningIncorrectURL() {
+
+        Assert.assertTrue(Driver.get().findElement(By.xpath("//span[contains(text(),'Incorrect UR')]")).isDisplayed());
 
     }
 }

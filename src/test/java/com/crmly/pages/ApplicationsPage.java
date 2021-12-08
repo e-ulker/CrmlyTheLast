@@ -33,6 +33,64 @@ public class ApplicationsPage extends BasePage{
     @FindBy(xpath = "//span[starts-with(@class, 'main-buttons-item-text-title')]")
     public List<WebElement> titleMenuTexts;
 
+    @FindBy(xpath = "//*[@id=\"top_menu_id_marketplace_more_button\"]/a/span[2]")
+    public WebElement moreBtn;
+
+    @FindBy(xpath = "//*[@id=\"popup-window-content-menu-popup-main_buttons_popup_top_menu_id_marketplace\"]/div/div/span[5]/span[2]")
+    public WebElement configureMenuTop;
+
+    @FindBy(xpath = "//*[@id=\"top_menu_id_marketplace_menu_marketplace_hook\"]/a/span[2]/span[1]")
+    public WebElement webhooksEditBtn;
+
+    @FindBy(xpath = "//*[@id=\"popup-window-content-menu-popup-main_buttons_popup_top_menu_id_marketplace\"]/div/div/a[3]/span[2]/span[1]/span[1]")
+    public WebElement webhooksEditBtnForShow;
+
+    @FindBy(xpath = "//*[@id=\"popup-window-content-menu-popup-top_menu_id_marketplace_edit_item\"]/div/div/span[2]/span[2]")
+    public WebElement webhooksHideBtn;
+
+    @FindBy(xpath = "//*[@id=\"top_menu_id_marketplace_menu_marketplace_hook\"]/a/span[2]/span[2]")
+    public WebElement webhooks;
+
+    @FindBy(xpath = "//*[@id=\"popup-window-content-menu-popup-top_menu_id_marketplace_edit_item\"]/div/div/span[2]/span[2]")
+    public WebElement webhooksShowBtn;
+
+    @FindBy(xpath = "//*[@id=\"top_menu_id_marketplace_menu_marketplace\"]/a/span[2]/span[1]")
+    public WebElement itemEditForMarketplace;
+
+    @FindBy(xpath = "//*[@id=\"popup-window-content-menu-popup-top_menu_id_marketplace_edit_item\"]/div/div/span[3]/span[2]")
+    public WebElement addToLeftMenu;
+
+    @FindBy(xpath = "//*[@id=\"bx_left_menu_menu_marketplace\"]/a/span")
+    public WebElement leftMenuMarketplace;
+
+    @FindBy(xpath = "//*[@id=\"left-menu-settings\"]")
+    public WebElement bottomConfigureMenu;
+
+    @FindBy(xpath = "//*[@id=\"popup-window-content-menu-popup-leftMenuSettingsPopup\"]/div/div/span[1]/span[2]")
+    public WebElement bottomConfigureMenuItems;
+
+    @FindBy(xpath = "//*[@id=\"bx_left_menu_menu_marketplace\"]/span[1]")
+    public WebElement editIconForMarketPlace;
+
+    @FindBy(xpath = "//*[@id=\"popup-window-content-menu-popup-popup_menu_marketplace\"]/div/div/span[4]/span[2]")
+    public WebElement removeFromMenu;
+
+    @FindBy(xpath = "//span[@class=\"menu-item-link-text\"]")
+    public List<WebElement> contentMenuItems;
+
+    @FindBy(xpath = "//span[@class=\"main-buttons-item-text-title\"]")
+    public List<WebElement> menuItems;
+
+
+    @FindBy(xpath = "//*[@id=\"top_menu_id_marketplace_menu_marketplace_installed\"]/a/span[2]/span[1]")
+    public WebElement editInstalled;
+
+    @FindBy(xpath = "//*[@id=\"popup-window-content-menu-popup-top_menu_id_marketplace_edit_item\"]/div/div/span[1]/span[2]")
+    public WebElement setAsSectionHomePage;
+
+
+
+
 
     public void clickFeatureLink(String featureName){
         WebElement featureElement = Driver.get().findElement(By.xpath("//div[text()='"+featureName+"']"));
