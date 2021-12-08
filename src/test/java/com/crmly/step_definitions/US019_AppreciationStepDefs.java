@@ -25,7 +25,6 @@ public class US019_AppreciationStepDefs {
     @When("the user clickss the {string} button")
     public void the_user_clickss_the_button(String buttonName) {
 
-
     }
 
     @Then("Appreciation window is displayed")
