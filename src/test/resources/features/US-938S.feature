@@ -26,7 +26,7 @@ Feature: Assign tasks under Quick Navigate Menu
     And Write inside the Things to do box
     And Click on the check sign
     Then Verify a checklist item is added
-  @selcan
+
   Scenario: the user can add separator lines
 
     Given The user logged in
