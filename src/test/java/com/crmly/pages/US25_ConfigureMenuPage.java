@@ -67,5 +67,16 @@ public class US25_ConfigureMenuPage extends BasePage{
     @FindBy(xpath = "//li[@id='bx_left_menu_1587574693']//span[1]")
     public WebElement penSignHidden;
 
+    @FindBy(css = "#left-menu-delete-self-item")
+    public WebElement deleteWindow;
+
+    @FindBy(xpath = "//span[.='Delete']")
+    public WebElement delete_Btn;
+
+    @FindBy(xpath = "//span[.='Cancel']")
+    public WebElement cancel_Btn;
+
+    @FindBy(css = ".menu-item-link-text")
+    public List<WebElement> allMenuItems;
 
 }

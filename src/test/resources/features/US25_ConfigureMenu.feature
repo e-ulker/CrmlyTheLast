@@ -109,11 +109,26 @@ Feature: Configure Menu
       | Applications |
       | Workflows    |
 
-  @nur
+
   Scenario: User should be able to show the custom item -AC7
     When user clicks to more option
     When user hovers over to created menu which is "YouTube"
     And  clicks to hidden pen sign
     And  clicks to "Show item" item
     Then verify "YouTube" custom menu item is not hidden window
+
+#  @nur
+  Scenario: User should be able to see "Delete custom item" window on the screen
+    When user hovers over to created menu which is "YouTube"
+    And  clicks to pen sign
+    And  clicks to "Delete custom item" item
+    Then user should be able to see the the Delete custom item window is displayed
+
+  @nur
+  Scenario: User should be able to delete the created custom item
+    When user hovers over to created menu which is "YouTube"
+    And  clicks to pen sign
+    And  clicks to "Delete custom item" item
+    And  user clicks "Delete" button
+    Then verify created "YouTube" custom menu is not visible on the screen
 
