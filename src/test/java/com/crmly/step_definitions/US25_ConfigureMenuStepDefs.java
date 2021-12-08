@@ -12,6 +12,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.sql.SQLOutput;
 import java.text.BreakIterator;
 import java.util.ArrayList;
 import java.util.List;
@@ -339,4 +340,50 @@ public class US25_ConfigureMenuStepDefs {
         BrowserUtils.hover(configureMenuPage.penSignHidden);
         configureMenuPage.penSignHidden.click();
     }
+
+
+
+    @Then("user should be able to see the the Delete custom item window is displayed")
+    public void user_should_be_able_to_see_the_the_delete_custom_item_window_is_displayed() {
+        assertTrue(configureMenuPage.deleteWindow.isDisplayed());
+    }
+
+
+    @When("user clicks {string} button")
+    public void user_clicks_button(String button) {
+        String path="//span[.='"+button+"']";
+
+        switch(button){
+            case "Delete":
+                Driver.get().findElement(By.xpath(path)).click();
+                break;
+            case "Cancel":
+                Driver.get().findElement(By.xpath(path)).click();
+                break;
+            default:
+                System.out.println("Make sure user can click successfully delete or cancel button");
+        }
+    }
+
+
+    @Then("verify created {string} custom menu is not visible on the screen")
+    public void verify_created_custom_menu_is_not_visible_on_the_screen(String createdCustMenuName) {
+//check it again
+        List<String> items= new ArrayList<>();
+
+        for (WebElement item: configureMenuPage.allMenuItems){
+            items.add(item.getText());
+        }
+        System.out.println("items = " + items);
+        System.out.println("createdCustMenuName = " + createdCustMenuName);
+        //assertFalse("created custom menu name should NOT be in the list",items.contains(createdCustMenuName));
+
+        if(items.contains(createdCustMenuName)){
+            assertTrue(false);
+        }else{
+            assertTrue(true);
+        }
+
+    }
+
 }
