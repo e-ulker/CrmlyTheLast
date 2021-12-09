@@ -9,9 +9,8 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Wait;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -86,11 +85,58 @@ public class servicesStepDef {
 
         BrowserUtils.waitFor(3);
 
-       List<String> ratings = BrowserUtils.getElementsText(servicesPage.ratingNums);
+       List<String> ratings1 = BrowserUtils.getElementsText(servicesPage.ratingNums);
 
-       System.out.println(ratings);
+       Collections.reverse(ratings1);
+
+        List<String> ratings2 = BrowserUtils.getElementsText(servicesPage.ratingNums);
+
+        Collections.sort(ratings2);
+
+        Assert.assertEquals(ratings2,ratings1);
+    }
+
+    @Then("user should be sort the date")
+    public void userShouldBeSortTheDate() {
 
 
+        List<String > dateswithallrow = BrowserUtils.getElementsText(servicesPage.dateElm);
 
+        System.out.println("date = " + dateswithallrow);
+
+
+    }
+
+
+    @When("user should be click and enter the {string}")
+    public void userShouldBeClickAndEnterThe(String name) {
+
+        servicesPage.newCategory.click();
+        BrowserUtils.waitFor(2);
+
+        servicesPage.id.sendKeys(name);
+
+        servicesPage.savebtn.click();
+
+    }
+
+
+    @Then("verify the created new category {string}")
+    public void verifyTheCreatedNewCategory(String name) {
+
+        List<String> rightMenuItems = BrowserUtils.getElementsText(servicesPage.rightMenuItems);
+
+        BrowserUtils.waitFor(2);
+
+
+       Assert.assertTrue(rightMenuItems.contains(name));
+
+
+    }
+
+
+    @Then("user can print the page should be sort the rating")
+    public void userCanPrintThePageShouldBeSortTheRating() {
+        servicesPage.print.click();
     }
 }

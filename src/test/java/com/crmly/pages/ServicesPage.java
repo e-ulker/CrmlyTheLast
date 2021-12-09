@@ -47,7 +47,21 @@ public class ServicesPage extends BasePage {
     @FindBy(xpath = "//*[@class='rating-vote ']/span")
     public List<WebElement> ratingNums;
 
+    @FindBy(className = "idea-owner")
+    public  List<WebElement> dateElm;
 
+    @FindBy(linkText = "New category")
+    public WebElement newCategory;
 
+    @FindBy(id = "NAME")
+    public  WebElement id;
 
+    @FindBy(id= "savebtn")
+    public WebElement savebtn;
+
+    @FindBy(className = "bx-idea-left-menu-li")
+    public List<WebElement> rightMenuItems;
+
+    @FindBy(xpath = "//span[text()='Print']")
+    public WebElement print;
 }
