@@ -7,6 +7,8 @@ import com.crmly.utilities.Driver;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 
 public class US_938StepDef {
@@ -86,5 +88,15 @@ public class US_938StepDef {
     public void verifyTheSeperatorIsAdded() {
         tasksPage.separatorline.isDisplayed();
 
+    }
+
+    @And("Click on the checkbox near checklist")
+    public void clickOnTheCheckboxNearChecklist() {
+        tasksPage.deleteChecklist.click();
+    }
+
+    @Then("Verify the checklist item is deleted")
+    public void verifyTheChecklistItemIsDeleted() {
+        Assert.assertFalse(Boolean.parseBoolean("Element should not be visible"+ Driver.get().findElement(By.xpath("//*[contains(text(),'Testcase')]")).isDisplayed()));
     }
 }

@@ -38,3 +38,15 @@ Feature: Assign tasks under Quick Navigate Menu
     Then Click on the check sign
     And Click on the seperator
     Then Verify  the seperator is added
+@selcan
+  Scenario: The user can delete a checklist item
+
+    Given The user logged in
+    When the user click on Tasks
+    And the user click on New Task
+    Then the user click on the checklist
+    And  Things to do box is opened
+    And Write inside the Things to do box
+    Then Click on the check sign
+    And Click on the checkbox near checklist
+    Then Verify the checklist item is deleted
