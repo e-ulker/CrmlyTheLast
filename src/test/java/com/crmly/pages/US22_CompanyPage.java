@@ -95,18 +95,20 @@ public class US22_CompanyPage extends BasePage {
         DateFormat toFormat = new SimpleDateFormat(dayPattern);
 
         Date actualDate = new Date();
+        System.out.println("actualDate = " + actualDate);
 
         String checkDay = toFormat.format(actualDate);
-
-        System.out.println(checkDay);
+        int checkDay2 = Integer.parseInt(checkDay);
+        System.out.println("checkDay2 = " + checkDay2);
+        String checkDay3 = String.valueOf(checkDay2);
 
         WebElement actualDay = Driver.get().findElement(By.xpath("(//div//a[@class='bx-calendar-cell bx-calendar-active bx-calendar-weekend' or @class='bx-calendar-cell bx-calendar-active'])"));
         //WebElement actualDat = Driver.get().findElement(By.xpath("//div//a[@class='bx-calendar-cell' or @class='bx-calendar-cell bx-calendar-weekend' or @class='bx-calendar-cell bx-calendar-active bx-calendar-weekend']"))
 
-        System.out.println("checkDay = " + checkDay);
+        System.out.println("checkDay3 = " + checkDay3);
         System.out.println(actualDay.getText());
 
-        Assert.assertEquals("is not selected", checkDay, actualDay.getText());
+        Assert.assertEquals("is not selected", checkDay3, actualDay.getText());
 
     }
 

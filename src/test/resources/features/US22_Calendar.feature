@@ -6,18 +6,18 @@ Feature: open calendar
     And the user click the company
     When the user click the add news button
     Then The preview text open
-  @REM-841 @wip
+  @REM-993 @slh
   Scenario: type date into date inputBox
     When write any date to date inputBox "MM/dd/yyyy"
 
-  @REM-842 @wip
+  @REM-996 @slh
   Scenario: verify to be shown actual date on calendar
     When click select date icon
     And verify actual day is selected "dd"
     And verify actual month is selected "MM"
     And verify actual year is selected "yyyy"
 
-  @REM-843 @wip
+  @REM-999 @slh
   Scenario Outline: choose <month>
     When click select date icon
     And click the month dropDawn menu
@@ -38,7 +38,7 @@ Feature: open calendar
       | November  |
       | December  |
 
-  @REM-844 @wip
+  @REM-1001 @slh
   Scenario Outline: choose <year>
     When click select date icon
     And click the year dropDawn menu
@@ -54,12 +54,12 @@ Feature: open calendar
       | 2019 |
       | 2018 |
 
-  @REM-845 @wip
+  @REM-1004 @slh
   Scenario: choose day
     When click select date icon
     Then choose a day
 
-  @REM-846 @wip
+  @REM-1005 @slh
   Scenario: set time
     When click select date icon
     Then click Set Time icon

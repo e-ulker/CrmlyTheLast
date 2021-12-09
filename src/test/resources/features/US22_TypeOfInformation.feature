@@ -7,7 +7,7 @@ Feature: select the type of information
     Then The preview text open
 
 
-  @wip @slh
+  @REM-990 @slh
   Scenario Outline: select <typeOfInformation>
     #Given click the news dropdawn menu icon
     When user should be able to choose "<typeOfInformation>"

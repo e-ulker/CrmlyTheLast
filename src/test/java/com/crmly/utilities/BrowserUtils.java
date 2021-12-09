@@ -56,6 +56,8 @@ public class BrowserUtils {
         }
         return elemTexts;
 
+
+
     }
 
 
@@ -77,5 +79,6 @@ public class BrowserUtils {
         } catch (Throwable error) {
             error.printStackTrace();
         }
+
     }
 }
