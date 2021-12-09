@@ -55,6 +55,7 @@ public class BrowserUtils {
             elemTexts.add(el.getText());
         }
         return elemTexts;
+
     }
 
     /**
@@ -75,4 +76,5 @@ public class BrowserUtils {
             error.printStackTrace();
         }
     }
+
 }
