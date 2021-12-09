@@ -1,6 +1,7 @@
+
 Feature: As a user, I can use Applications menu
 
-  @done
+  @REM-974 @smoke
   Scenario Outline: "<user>"  should be able to display the new applications
     Given user should be able to login as "<user>" successfully
     When user should be able to click "Applications"
@@ -12,7 +13,7 @@ Feature: As a user, I can use Applications menu
       | humanResource |
       | marketing     |
 
-  @done
+  @REM-975
   Scenario Outline: "<user>" should be able to send a request for installing if there is no permission for installing
     Given user should be able to login as "<user>" successfully
     When user should be able to click "Applications"
@@ -26,7 +27,7 @@ Feature: As a user, I can use Applications menu
       | humanResource |
       | marketing     |
 
-  @done
+  @REM-976 @smoke
   Scenario Outline: "<user>" should be able to display the application's features
     Given user should be able to login as "<user>" successfully
     When user should be able to click "Applications"
@@ -43,7 +44,7 @@ Feature: As a user, I can use Applications menu
       | humanResource |
       | marketing     |
 
-  @done
+  @REM-977
   Scenario Outline: "<user>"  should be able to display 'Marketplace','Installed' and 'Webhooks' on the Application Page
     Given user should be able to login as "<user>" successfully
     When user should be able to click "Applications"
@@ -58,7 +59,7 @@ Feature: As a user, I can use Applications menu
       | humanResource |
       | marketing     |
 
-   @done
+  @REM-979
   Scenario Outline: "<user>" should be able to hide and show Webhooks from Configure Menu
     Given user should be able to login as "<user>" successfully
     When user should be able to click "Applications"
@@ -72,7 +73,7 @@ Feature: As a user, I can use Applications menu
       | marketing     |
 
 
-  @done
+  @REM-980
   Scenario Outline: "<user>" should be able to add and remove 'Marketplace' to the left menu
     Given user should be able to login as "<user>" successfully
     When user should be able to click "Applications"
@@ -85,7 +86,7 @@ Feature: As a user, I can use Applications menu
       | humanResource |
       | marketing     |
 
-  @done
+  @REM-981
   Scenario Outline: "<user>" should be able to set Installed as the section home page
     Given user should be able to login as "<user>" successfully
     When user should be able to click "Applications"
