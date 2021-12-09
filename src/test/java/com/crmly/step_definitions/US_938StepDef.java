@@ -99,4 +99,25 @@ public class US_938StepDef {
     public void verifyTheChecklistItemIsDeleted() {
         Assert.assertFalse(Boolean.parseBoolean("Element should not be visible"+ Driver.get().findElement(By.xpath("//*[contains(text(),'Testcase')]")).isDisplayed()));
     }
+
+    @Then("Click on the title button")
+    public void clickOnTheTitleButton() {
+        Driver.get().switchTo().frame(tasksPage.iframe);
+        tasksPage.title.click();
+    }
+
+    @And("Write inside the title")
+    public void writeInsideTheTitle() {
+        tasksPage.title.sendKeys("Jenkins");
+    }
+
+    @And("Click on the Add Task button")
+    public void clickOnTheAddTaskButton() {
+        tasksPage.sendtask.click();
+    }
+
+    @Then("Verify Task is added")
+    public void verifyTaskIsAdded() {
+        tasksPage.AddedTask.isDisplayed();
+    }
 }

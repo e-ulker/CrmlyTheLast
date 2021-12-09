@@ -38,7 +38,7 @@ Feature: Assign tasks under Quick Navigate Menu
     Then Click on the check sign
     And Click on the seperator
     Then Verify  the seperator is added
-@selcan
+
   Scenario: The user can delete a checklist item
 
     Given The user logged in
@@ -50,3 +50,13 @@ Feature: Assign tasks under Quick Navigate Menu
     Then Click on the check sign
     And Click on the checkbox near checklist
     Then Verify the checklist item is deleted
+@selcan
+  Scenario: The user can add a task
+
+    Given The user logged in
+    When the user click on Tasks
+    And the user click on New Task
+    Then Click on the title button
+    And Write inside the title
+    And Click on the Add Task button
+    Then Verify Task is added
