@@ -58,6 +58,8 @@ public class BrowserUtils {
 
     }
 
+   }
+
     /**
      * waits for backgrounds processes on the browser to complete
      *
@@ -76,5 +78,4 @@ public class BrowserUtils {
             error.printStackTrace();
         }
     }
-
 }
