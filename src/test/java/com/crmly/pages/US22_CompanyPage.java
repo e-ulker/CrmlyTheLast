@@ -14,7 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
 
-public class REM945_CompanyPage_Salih extends BasePage {
+public class US22_CompanyPage extends BasePage {
 //pre-condition
     @FindBy(xpath = "//*[@id='bx_left_menu_menu_about_sect']/a/span")
     public WebElement company;
@@ -233,31 +233,6 @@ public class REM945_CompanyPage_Salih extends BasePage {
 
         }
     }
-    public void setClipboardData(String string) {
-        //StringSelection is a class that can be used for copy and paste operations.
-
-        StringSelection stringSelection = new StringSelection(string);
-        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection,null);
-
-    }
-    public void uploadFile(String fileLocation) {
-        try {
-            //Setting clipboard with file location
-            setClipboardData(fileLocation);
-            //native key strokes for CTRL, V and ENTER keys
-            Robot robot = new Robot();
-
-            robot.keyPress(KeyEvent.VK_CONTROL);
-            robot.keyPress(KeyEvent.VK_V);
-            robot.keyRelease(KeyEvent.VK_V);
-            robot.keyRelease(KeyEvent.VK_CONTROL);
-            robot.keyPress(KeyEvent.VK_ENTER);
-            robot.keyRelease(KeyEvent.VK_ENTER);
-        } catch (Exception exp) {
-            exp.printStackTrace();
-        }
-    }
-
 }
 
 

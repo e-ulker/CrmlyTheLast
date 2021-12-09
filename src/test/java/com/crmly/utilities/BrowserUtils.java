@@ -2,10 +2,9 @@ package com.crmly.utilities;
 
 
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -26,6 +25,7 @@ public class BrowserUtils {
             e.printStackTrace();
         }
     }
+
     /**
      * Waits for provided element to be clickable
      *
@@ -55,5 +55,26 @@ public class BrowserUtils {
             elemTexts.add(el.getText());
         }
         return elemTexts;
-}
+
+    }
+
+    /**
+     * waits for backgrounds processes on the browser to complete
+     *
+     * @param timeOutInSeconds
+     */
+    public static void waitForPageToLoad(long timeOutInSeconds) {
+        ExpectedCondition<Boolean> expectation = new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver driver) {
+                return ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");
+            }
+        };
+        try {
+            WebDriverWait wait = new WebDriverWait(Driver.get(), timeOutInSeconds);
+            wait.until(expectation);
+        } catch (Throwable error) {
+            error.printStackTrace();
+        }
+    }
+
 }

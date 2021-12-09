@@ -1,15 +1,15 @@
 package com.crmly.step_definitions;
 
-import com.crmly.pages.REM945_CompanyPage_Salih;
+import com.crmly.pages.US22_CompanyPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 
-public class REM945_PreCondition_Salih {
+public class US22_PreCondition {
 
 
-    REM945_CompanyPage_Salih companyPage = new REM945_CompanyPage_Salih();
+    US22_CompanyPage companyPage = new US22_CompanyPage();
 
 
     @And("the user click the company")

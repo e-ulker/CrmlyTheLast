@@ -1,4 +1,5 @@
 Feature: Using Employee functions
+  Agile Story : As a user, I should be able to use functions under Employee menu
 
   Background: Login
     Given User is on the login page
@@ -19,3 +20,17 @@ Feature: Using Employee functions
     When User navigates Find Employee tab
     And User clicks Search by Alphabet
     And User picks a letter to search an employee
+
+  Scenario: Exporting the employee list
+    When User navigates Find Employee tab
+    And User clicks on More button
+    And User clicks on Export to Excel
+
+  Scenario: Displaying telephone directory
+    When User navigates Telephone Directory tab
+    Then User should be able display Telephone Directory page
+
+  Scenario: Sending message to employee from the telephone directory
+    When User navigates Telephone Directory tab
+    And User selects an employee to display send message option
+
