@@ -3,6 +3,7 @@ package com.crmly.step_definitions;
 import com.crmly.pages.FilterAndSearchPage;
 import com.crmly.utilities.BrowserUtils;
 import com.crmly.utilities.Driver;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
@@ -127,5 +128,25 @@ public class FilterAndSearchStepDefs {
     }
 
 
+    @And("the user click on the Save Filter button")
+    public void theUserClickOnTheSaveFilterButton() {
+        filterAndSearchPage.saveFilter.click();
+    }
+
+    @And("the user write a filter name")
+    public void theUserWriteAFilterName() {
+        filterAndSearchPage.filterName.sendKeys("Message");
+    }
+
+    @And("the user click on the save button")
+    public void theUserClickOnTheSaveButton() {
+        BrowserUtils.waitFor(2);
+        filterAndSearchPage.save.click();
+    }
+
+    @Then("Verify that the user can saved a filter")
+    public void verifyThatTheUserCanSavedAFilter() {
+        filterAndSearchPage.verifyFilter.isDisplayed();
+    }
 }
 

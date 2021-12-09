@@ -10,6 +10,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 
 
 public class EmployeeFunctionsStepDefs {
@@ -73,6 +74,7 @@ public class EmployeeFunctionsStepDefs {
 
     @And("User writes an {string} in search box")
     public void userWritesAnInSearchBox(String employeeName) {
+
         employeePage.searchBar.sendKeys(employeeName);
     }
 
@@ -84,5 +86,15 @@ public class EmployeeFunctionsStepDefs {
     }
 
 
+    @And("User clicks Search by Alphabet")
+    public void userClicksSearchByAlphabet() {
+        employeePage.searchByAlphabet.click();
+    }
 
+    @And("User picks a letter to search an employee")
+    public void userPicksALetterToSearchAnEmployee() {
+        employeePage.searchByLetter("D");
+        String actualName = Driver.get().findElement(By.xpath("//a[normalize-space()='Cristopher Debua']")).getText();
+        Assert.assertTrue(actualName.contains("Debua"));
+    }
 }
