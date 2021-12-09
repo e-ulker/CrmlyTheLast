@@ -3,7 +3,7 @@ package com.crmly.pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class Dashboard {
+public class Dashboard  extends BasePage{
     @FindBy(xpath = "//td[@class='files-del-btn']/span[@class='del-but']")
     public WebElement delButton;
 
@@ -14,7 +14,7 @@ public class Dashboard {
     @FindBy(xpath= "//div[@id='post-buttons-bottom']//span[@id='bx-b-uploadfile-blogPostForm']")
     public WebElement UploadFile;
 
-    @FindBy(xpath = "//div[@class='menu-popup-items']//span[text()='Announcement']")
+    @FindBy(xpath = "//div[@class='menu-popup-items']//span[text()='Appreciation']")
     public WebElement Appreciation;
 
     @FindBy(css = "span#feed-add-post-form-link-text")
