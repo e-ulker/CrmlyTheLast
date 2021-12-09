@@ -110,4 +110,14 @@ public class EmployeeFunctionsStepDefs {
         Assert.assertTrue(employeePage.isFileDownloaded(employeePage.downloadPath,"users.xls"));
         BrowserUtils.waitFor(2);
     }
+
+    @When("User navigates Telephone Directory tab")
+    public void userNavigatesTelephoneDirectoryTab() {
+        employeePage.navigateToTab("Telephone Directory");
+    }
+
+    @Then("User should be able display Telephone Directory page")
+    public void userShouldBeAbleDisplayTelephoneDirectoryPage() {
+        Assert.assertEquals("Telephone Directory",employeePage.telDir.getText());
+    }
 }
