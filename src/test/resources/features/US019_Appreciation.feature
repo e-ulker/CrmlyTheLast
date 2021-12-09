@@ -13,8 +13,8 @@ Feature:create a quote
     Then Appreciation window is displayed
 
 
-  @run
-    #AC04
+
+    #TC04
   Scenario: Verify that users should be added by selecting multiple contacts from Employees and Departments contact lists
     When User clicks Appreciation subheading from More tabb
     And User clicks Employees and departments Tab after clicking Add Moree
@@ -26,4 +26,19 @@ Feature:create a quote
       | hr86@cybertekschool.com |
       | hr84@cybertekschool.com |
       | hr85@cybertekschool.com |
+
+
+  @run
+    #TC05
+  Scenario Outline: Verify that attach a link that have link text & link URL by clicking on the link icon.
+    When User clicks Appreciation subheading from More tabb
+    And User clicks link icon
+    And User enters link text "<LinkText>" and link URL "<LinkURL>"
+    And User clicks Save button
+    Then User should see attached link which has only Link URL or LinkText and URL "<LinkText>" "<LinkURL>"
+    Examples:
+      | LinkText | LinkURL                  |
+     #| google   | https://www.google.com/  |
+      |          | https://www.google.com/  |
+      #| hotmail  | https://www.hotmail.com/ |
 
