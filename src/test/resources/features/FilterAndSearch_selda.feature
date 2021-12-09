@@ -3,6 +3,7 @@ Feature: the user should be able to use "Filter and search" functionality
   Background: Login with HR credentials
     Given The user logged in
     When the user on the Filter and Search button
+
     @filter
     Scenario: User should be able to see default filters
       Then Verify that the user should be able to see default filters
@@ -12,9 +13,7 @@ Feature: the user should be able to use "Filter and search" functionality
       |ANNOUNCEMENTS|
       |WORKFLOWS|
 
-  Scenario:Human source user2
-    Given The user login as a human source
-    When the user navigates to Filter and Search box
+  Scenario:User should be able to add and remove field.
     Then the user enter add field
     And the user should see seven item
       | Date      |
@@ -55,3 +54,10 @@ Feature: the user should be able to use "Filter and search" functionality
       | To        |
     And the user enter add any field
     And the user click restore default fields
+
+    @smoke
+    Scenario: User should be able to save filter
+      And the user click on the Save Filter button
+      And the user write a filter name
+      And the user click on the save button
+      Then Verify that the user can saved a filter

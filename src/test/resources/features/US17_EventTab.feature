@@ -35,7 +35,7 @@ Feature: Creating Event
     And user edits Repeat
     And user edits Calendar
     And user edits Importance
-  @aet
+  @aet @smoke
   Scenario: User should be able to send messages
     When user clicks on Event Tab
     When user clicks SEND button

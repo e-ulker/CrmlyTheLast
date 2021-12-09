@@ -10,6 +10,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 
 
 public class EmployeeFunctionsStepDefs {
@@ -84,5 +85,39 @@ public class EmployeeFunctionsStepDefs {
     }
 
 
+    @And("User clicks Search by Alphabet")
+    public void userClicksSearchByAlphabet() {
+        employeePage.searchByAlphabet.click();
+    }
 
+    @And("User picks a letter to search an employee")
+    public void userPicksALetterToSearchAnEmployee() {
+        employeePage.searchByLetter("D");
+        String actualName = Driver.get().findElement(By.xpath("//a[normalize-space()='Cristopher Debua']")).getText();
+        Assert.assertTrue(actualName.contains("Debua"));
+    }
+
+    @And("User clicks on More button")
+    public void userClicksOnMoreButton() {
+        employeePage.moreButton.click();
+        BrowserUtils.waitFor(2);
+    }
+
+    @And("User clicks on Export to Excel")
+    public void userClicksOnExportToExcel() {
+        employeePage.exportButton.click();
+        BrowserUtils.waitFor(2);
+        Assert.assertTrue(employeePage.isFileDownloaded(employeePage.downloadPath,"users.xls"));
+        BrowserUtils.waitFor(2);
+    }
+
+    @When("User navigates Telephone Directory tab")
+    public void userNavigatesTelephoneDirectoryTab() {
+        employeePage.navigateToTab("Telephone Directory");
+    }
+
+    @Then("User should be able display Telephone Directory page")
+    public void userShouldBeAbleDisplayTelephoneDirectoryPage() {
+        Assert.assertEquals("Telephone Directory",employeePage.telDir.getText());
+    }
 }

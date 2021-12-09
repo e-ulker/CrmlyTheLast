@@ -25,6 +25,7 @@ public class BrowserUtils {
             e.printStackTrace();
         }
     }
+
     /**
      * Waits for provided element to be clickable
      *
@@ -55,6 +56,7 @@ public class BrowserUtils {
         }
         return elemTexts;
     }
+
     /**
      * waits for backgrounds processes on the browser to complete
      *
