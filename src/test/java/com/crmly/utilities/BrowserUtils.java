@@ -55,4 +55,5 @@ public class BrowserUtils {
             elemTexts.add(el.getText());
         }
         return elemTexts;
+    }
 }
