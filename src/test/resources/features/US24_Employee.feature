@@ -29,3 +29,8 @@ Feature: Using Employee functions
   Scenario: Displaying telephone directory
     When User navigates Telephone Directory tab
     Then User should be able display Telephone Directory page
+
+  Scenario: Sending message to employee from the telephone directory
+    When User navigates Telephone Directory tab
+    And User selects an employee to display send message option
+
