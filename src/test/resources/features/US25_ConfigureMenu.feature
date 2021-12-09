@@ -6,12 +6,14 @@ Feature: Configure Menu
   Background:
     Given  user should be able to login as "humanResource" successfully
 
-  Scenario: User should see the menu pop up - AC1
+  @REM-1010
+  Scenario: User should see the menu pop up - AC1 //tc1
     When the user clicks configure menu option
     Then menu pop up should be display
 
 
-  Scenario: User should see the right options inside the configuration menu pop up -AC1
+  @REM-1011
+  Scenario: User should see the right options inside the configuration menu pop up -AC1 //tc2
     When the user clicks configure menu option
     Then the system should display following options inside the configuration pop up window
       | Configure menu items               |
@@ -22,42 +24,53 @@ Feature: Configure Menu
       | Reset menu                         |
 
 
-  Scenario: User should see selected checkbox as a default -AC1
+  @REM-1012
+  Scenario: User should see selected checkbox as a default -AC1 //tc3
     When the user clicks configure menu option
     And  the user hits "Add custom menu item" option from the menu pop up
     Then "Add custom menu item" window should be display
     And  verify "open new tab" checkbox is selected as a default
-#  until here ok
 
-  Scenario: User should add custom menu -AC1
+
+
+  @REM-1013
+  Scenario: User should add custom menu -AC1 //tc4
     When the user clicks configure menu option
     And  the user hits "Add custom menu item" option from the menu pop up
     And  user adds custom menu as "Google" to redirect "google.com"
     Then hit the "Add" button on the add custom menu window
     And  verify "Google" custom menu is displayed on the menu items
-#--------------DONE----------------------
+    And the user clicks configure menu option
+    And  the user hits "Reset menu" option from the menu pop up
+    And  user accepts the pop up
 
 
 
 
-#  u can not execute this scenario before line 32nd scenario
-  Scenario: User should NOT add new custom menu which is same already exist one -AC1
+
+
+  @REM-1014
+  Scenario: User should NOT add new custom menu which is same already exist one -AC1 //tc5
     When the user clicks configure menu option
     And  the user hits "Add custom menu item" option from the menu pop up
-    And  user adds custom menu as "Google" to redirect "www.google.com"
+    And  user adds custom menu as "Google" to redirect "google.com"
+    Then hit the "Add" button on the add custom menu window
+    When the user clicks configure menu option
+    And  the user hits "Add custom menu item" option from the menu pop up
+    And  user adds custom menu as "Google" to redirect "google.com"
     Then hit the "Add" button on the add custom menu window
     Then the system should display a window which has "This page has already been added to Favorites." message
 
     And the user clicks configure menu option
     And  the user hits "Reset menu" option from the menu pop up
     And  user accepts the pop up
-#-------------DONE--------------------
 
 
 
 
 
-  Scenario Outline: User should NOT add new custom menu if s/he lefts input box blank -AC1
+  @REM-1015
+  Scenario Outline: User should NOT add new custom menu if s/he lefts input box blank -AC1 //TC05
     When the user clicks configure menu option
     And  the user hits "Add custom menu item" option from the menu pop up
     And  user adds custom menu as "<name>" to redirect "<link>"
@@ -68,9 +81,11 @@ Feature: Configure Menu
       | YouTube |            |
       |         | amazon.com |
       |         |            |
-#-----------DONE-----------------
 
-  Scenario: User should open custom menu link in a new tab -AC2
+
+
+  @REM-1016
+  Scenario: User should open custom menu link in a new tab -AC2 //TC7
     Given the user clicks configure menu option
     And  the user hits "Add custom menu item" option from the menu pop up
     And  user adds custom menu as "Google" to redirect "google.com"
@@ -83,14 +98,14 @@ Feature: Configure Menu
     And the user clicks configure menu option
     And  the user hits "Reset menu" option from the menu pop up
     And  user accepts the pop up
-#  --------------DONE-------------------
 
 
 
 
 
 
-  Scenario: User should see the options -AC4
+  @REM-1017
+  Scenario: User should see the options -AC4 //TC08
     Given the user clicks configure menu option
     And  the user hits "Add custom menu item" option from the menu pop up
     And  user adds custom menu as "Google" to redirect "google.com"
@@ -107,12 +122,12 @@ Feature: Configure Menu
     And the user clicks configure menu option
     And  the user hits "Reset menu" option from the menu pop up
     And  user accepts the pop up
-#  ---------------DONE----------------
 
 
 
 
 
+  @REM-1018
   Scenario: User should see the edit custom menu -AC4
     Given the user clicks configure menu option
     And  the user hits "Add custom menu item" option from the menu pop up
@@ -127,13 +142,13 @@ Feature: Configure Menu
     And the user clicks configure menu option
     And  the user hits "Reset menu" option from the menu pop up
     And  user accepts the pop up
-#  ---------------DONE-----------------
 
 
 
 
 
 
+  @REM-1019
   Scenario: User should edit custom menu  -AC4
     Given the user clicks configure menu option
     And  the user hits "Add custom menu item" option from the menu pop up
@@ -152,12 +167,12 @@ Feature: Configure Menu
     And  the user hits "Reset menu" option from the menu pop up
     And  user accepts the pop up
 
-#-----------------DONE---------------------
 
 
 
 
 
+  @REM-1020
   Scenario: User should be hide custom menu item  -AC5
     Given the user clicks configure menu option
     And  the user hits "Add custom menu item" option from the menu pop up
@@ -172,13 +187,13 @@ Feature: Configure Menu
     And the user clicks configure menu option
     And  the user hits "Reset menu" option from the menu pop up
     And  user accepts the pop up
-#-------------------DONE--------------------
 
 
 
 
 
 
+  @REM-1021
   Scenario: User should be see the hidden pop up window -AC6
     Given the user clicks configure menu option
     And  the user hits "Add custom menu item" option from the menu pop up
@@ -194,7 +209,6 @@ Feature: Configure Menu
     And  the user clicks configure menu option
     And  the user hits "Reset menu" option from the menu pop up
     And  user accepts the pop up
-# --------------DONE--------------------------------
 
 
 
@@ -202,19 +216,20 @@ Feature: Configure Menu
 
 
 
+  @REM-1022
   Scenario: User should be see the default hidden items -AC6
     When user clicks to more option
     Then user should be able to see default options
       | Applications |
       | Workflows    |
 
-#-----------------DONE------------------------
 
 
 
 
 
 
+  @REM-1023
   Scenario: User should be able to show the custom item -AC7
     Given the user clicks configure menu option
     And  the user hits "Add custom menu item" option from the menu pop up
@@ -233,7 +248,6 @@ Feature: Configure Menu
     And  the user clicks configure menu option
     And  the user hits "Reset menu" option from the menu pop up
     And  user accepts the pop up
-#    --------------------------DONE---------------------------
 
 
 
@@ -242,7 +256,8 @@ Feature: Configure Menu
 
 
 
-  Scenario: User should be able to see "Delete custom item" window on the screen
+  @REM-1025
+  Scenario: User should be able to see "Delete custom item" window on the screen -AC3
     Given the user clicks configure menu option
     And  the user hits "Add custom menu item" option from the menu pop up
     And  user adds custom menu as "YouTube" to redirect "youtube.com"
@@ -254,7 +269,6 @@ Feature: Configure Menu
     Then user should be able to see the the Delete custom item window is displayed
 
     And  user clicks "Delete" button
-#---------------------DONE------------------------
 
 
 
@@ -262,7 +276,8 @@ Feature: Configure Menu
 
 
 
-  Scenario: User should be able to delete the created custom item
+  @REM-1026 @onlyOne
+  Scenario: User should be able to delete the created custom item -AC3
     Given the user clicks configure menu option
     And  the user hits "Add custom menu item" option from the menu pop up
     And  user adds custom menu as "YouTube" to redirect "youtube.com"
@@ -274,13 +289,13 @@ Feature: Configure Menu
     And  user clicks "Delete" button
     Then verify created "YouTube" custom menu is not visible on the screen
 
-#    ----WORK IN PROGRESS ---
 
 
 
 
 
-  @onlyOne
+
+  @REM-1027
   Scenario: User should can reset the menu
     Given the user clicks configure menu option
     And  the user hits "Add custom menu item" option from the menu pop up
@@ -303,7 +318,5 @@ Feature: Configure Menu
       | Employees        |
       | Services         |
       | Company          |
-
-#   ------- WORK IN PROGRESS ------
 
 
