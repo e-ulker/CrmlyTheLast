@@ -74,7 +74,6 @@ public class EmployeeFunctionsStepDefs {
 
     @And("User writes an {string} in search box")
     public void userWritesAnInSearchBox(String employeeName) {
-
         employeePage.searchBar.sendKeys(employeeName);
     }
 
@@ -96,5 +95,19 @@ public class EmployeeFunctionsStepDefs {
         employeePage.searchByLetter("D");
         String actualName = Driver.get().findElement(By.xpath("//a[normalize-space()='Cristopher Debua']")).getText();
         Assert.assertTrue(actualName.contains("Debua"));
+    }
+
+    @And("User clicks on More button")
+    public void userClicksOnMoreButton() {
+        employeePage.moreButton.click();
+        BrowserUtils.waitFor(2);
+    }
+
+    @And("User clicks on Export to Excel")
+    public void userClicksOnExportToExcel() {
+        employeePage.exportButton.click();
+        BrowserUtils.waitFor(2);
+        Assert.assertTrue(employeePage.isFileDownloaded(employeePage.downloadPath,"users.xls"));
+        BrowserUtils.waitFor(2);
     }
 }

@@ -26,6 +26,7 @@ public class BrowserUtils {
             e.printStackTrace();
         }
     }
+
     /**
      * Waits for provided element to be clickable
      *
@@ -55,4 +56,5 @@ public class BrowserUtils {
             elemTexts.add(el.getText());
         }
         return elemTexts;
+    }
 }
