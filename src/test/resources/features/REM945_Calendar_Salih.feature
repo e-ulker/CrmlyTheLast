@@ -2,7 +2,7 @@
 Feature: open calendar
 
   Background:
-    Given the user login in as "human_Resource_username"
+    Given user should be able to login as "humanResource" successfully
     And the user click the company
     When the user click the add news button
     Then The preview text open

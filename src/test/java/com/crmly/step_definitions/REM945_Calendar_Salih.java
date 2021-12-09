@@ -1,6 +1,6 @@
 package com.crmly.step_definitions;
 
-import com.crmly.pages.CompanyPage;
+import com.crmly.pages.REM945_CompanyPage_Salih;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -9,9 +9,9 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Calendar {
+public class REM945_Calendar_Salih {
 
-    CompanyPage companyPage = new CompanyPage();
+    REM945_CompanyPage_Salih companyPage = new REM945_CompanyPage_Salih();
 
 
     @When("write any date to date inputBox {string}")
