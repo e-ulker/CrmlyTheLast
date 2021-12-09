@@ -10,6 +10,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
+import java.io.File;
 import java.util.List;
 import java.util.Random;
 
@@ -41,6 +42,48 @@ public class EmployeePage extends BasePage {
 
     @FindBy(css = ".bx24-top-bar-search-icon")
     public WebElement searchButton;
+
+    @FindBy(css = "span.filter-but-text")
+    public WebElement searchByAlphabet;
+
+    @FindBy(css = "span[class='filter-but-icon']")
+    public WebElement moreButton;
+
+    @FindBy(xpath = "//span[normalize-space()='Export to Excel']")
+    public WebElement exportButton;
+
+    @FindBy(css = "#pagetitle")
+    public WebElement telDir;
+
+    @FindBy(css = "a[id^='anchor_']")
+    public List<WebElement> contactsList;
+
+    @FindBy(css = "span.webform-small-button-text")
+    public WebElement sendMsgBtn;
+
+    @FindBy(css = "textarea.bx-messenger-textarea-input")
+    public WebElement msgArea;
+
+    @FindBy(css = "span[id^='im-message-']")
+    public WebElement sentMsg;
+
+    public String downloadPath = "C:\\Users\\Lumina\\Downloads";
+
+    public boolean isFileDownloaded(String downloadPath, String fileName) {
+        boolean flag = false;
+        File dir = new File(downloadPath);
+        File[] dir_contents = dir.listFiles();
+
+        for (int i = 0; i < dir_contents.length; i++) {
+            if (dir_contents[i].getName().equals(fileName))
+                return flag=true;
+        }
+        return flag;
+    }
+
+    public void searchByLetter(String letter){
+        Driver.get().findElement(By.linkText(letter)).click();
+    }
 
     public void selectDepartment() {
         Select selectDep = new Select(selectDept);
