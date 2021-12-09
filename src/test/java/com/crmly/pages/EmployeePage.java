@@ -55,6 +55,18 @@ public class EmployeePage extends BasePage {
     @FindBy(css = "#pagetitle")
     public WebElement telDir;
 
+    @FindBy(css = "a[id^='anchor_']")
+    public List<WebElement> contactsList;
+
+    @FindBy(css = "span.webform-small-button-text")
+    public WebElement sendMsgBtn;
+
+    @FindBy(css = "textarea.bx-messenger-textarea-input")
+    public WebElement msgArea;
+
+    @FindBy(css = "span[id^='im-message-']")
+    public WebElement sentMsg;
+
     public String downloadPath = "C:\\Users\\Lumina\\Downloads";
 
     public boolean isFileDownloaded(String downloadPath, String fileName) {
