@@ -27,6 +27,7 @@ public class US25_ConfigureMenuStepDefs {
 
     @When("the user clicks configure menu option")
     public void the_user_clicks_configure_menu_option() {
+        BrowserUtils.waitFor(2);
         configureMenuPage.configMenu.click();
     }
 
@@ -99,6 +100,7 @@ public class US25_ConfigureMenuStepDefs {
         String newLink="https://www."+link+"/";
 
         configureMenuPage.nameInput.sendKeys(name+ Keys.ENTER);
+        BrowserUtils.waitFor(2);
         configureMenuPage.linkInput.sendKeys(newLink+Keys.ENTER);
 
     }
@@ -213,6 +215,7 @@ public class US25_ConfigureMenuStepDefs {
     @When("clicks to pen sign")
     public void clicks_to_pen_sign() {
         configureMenuPage.penSign.click();
+        BrowserUtils.waitFor(3);
     }
 
 
@@ -379,6 +382,7 @@ public class US25_ConfigureMenuStepDefs {
         switch(button){
             case "Delete":
                 Driver.get().findElement(By.xpath(path)).click();
+                BrowserUtils.waitFor(3);
                 break;
             case "Cancel":
                 Driver.get().findElement(By.xpath(path)).click();
@@ -394,6 +398,9 @@ public class US25_ConfigureMenuStepDefs {
 
         List<WebElement> actualItems = Driver.get().findElements(By.cssSelector(".menu-item-link-text"));
 
+        List<String> notExpectedItem= new ArrayList<>();
+        notExpectedItem.add(createdCustMenuName);
+
         List<String> actualItemList= new ArrayList<>();
 
         BrowserUtils.waitForPageToLoad(3);
@@ -402,35 +409,11 @@ public class US25_ConfigureMenuStepDefs {
         }
 
         System.out.println("actualItemList = " + actualItemList);
-        System.out.println("createdCustMenuName = " + createdCustMenuName);
-       // assertFalse("created custom menu name should NOT be in the list",items.contains(createdCustMenuName));
+        System.out.println("notExpectedItem = " + notExpectedItem);
 
-        for(String nameItem: actualItemList){
-            if(nameItem.contains(createdCustMenuName)){
-                assertTrue(false);
-            }else{
-                assertTrue(true);
-            }
-        }
+        assertFalse("created custom menu name should NOT be in the list",actualItemList.containsAll(notExpectedItem));
 
 
-
-
-//
-//        String path= "//span[.='"+createdCustMenuName+"']";
-//        WebElement element = Driver.get().findElement(By.xpath(path));
-//        assertTrue(element.isEnabled());
-
-
-//        assertTrue(items.contains(actualItem));
-
-       // assertTrue(!(items.contains(createdCustMenuName)));
-//
-//        if(items.contains(createdCustMenuName)){
-//            assertTrue(false);
-//        }else{
-//            assertTrue(true);
-//        }
 
     }
 
@@ -440,18 +423,18 @@ public class US25_ConfigureMenuStepDefs {
     @Then("verify system displays menu items")
     public void verify_system_displays_menu_items(List<String> expectedList) {
 
-        List<WebElement> actualItems = Driver.get().findElements(By.cssSelector(".menu-item-link-text"));
+        //List<WebElement> actualItems = Driver.get().findElements(By.cssSelector(".menu-item-link-text"));
 
         List<String> actualList= new ArrayList<>();
 
         BrowserUtils.waitForPageToLoad(3);
-        for (WebElement item: actualItems){
+        for (WebElement item: configureMenuPage.allMenuItems){
             actualList.add(item.getText());
         }
         System.out.println("actualList = " + actualList);
         System.out.println("expectedList = " + expectedList);
 
-        assertTrue("Ecpected list should contain actual list",actualList.contains(expectedList));
+        assertTrue("Expected list should contain actual list",actualList.containsAll(expectedList));
 
     }
 
@@ -461,6 +444,7 @@ public class US25_ConfigureMenuStepDefs {
     public void user_accepts_the_pop_up() {
         Alert alert= Driver.get().switchTo().alert();
         alert.accept();
+        BrowserUtils.waitFor(3);
     }
 
 
