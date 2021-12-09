@@ -42,6 +42,13 @@ public class EmployeePage extends BasePage {
     @FindBy(css = ".bx24-top-bar-search-icon")
     public WebElement searchButton;
 
+    @FindBy(css = "span.filter-but-text")
+    public WebElement searchByAlphabet;
+
+    public void searchByLetter(String letter){
+        Driver.get().findElement(By.linkText(letter)).click();
+    }
+
     public void selectDepartment() {
         Select selectDep = new Select(selectDept);
         List<WebElement> selectDepOptions = selectDep.getOptions();

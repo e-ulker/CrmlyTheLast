@@ -15,4 +15,7 @@ Feature: Using Employee functions
     And User selects the parent department
     Then User clicks Add button
 
-
+  Scenario: Finding employee using search by alphabet
+    When User navigates Find Employee tab
+    And User clicks Search by Alphabet
+    And User picks a letter to search an employee
