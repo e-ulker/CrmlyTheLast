@@ -52,6 +52,9 @@ public class EmployeePage extends BasePage {
     @FindBy(xpath = "//span[normalize-space()='Export to Excel']")
     public WebElement exportButton;
 
+    @FindBy(css = "#pagetitle")
+    public WebElement telDir;
+
     public String downloadPath = "C:\\Users\\Lumina\\Downloads";
 
     public boolean isFileDownloaded(String downloadPath, String fileName) {
