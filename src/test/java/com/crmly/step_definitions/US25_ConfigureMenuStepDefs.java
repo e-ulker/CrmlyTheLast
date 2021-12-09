@@ -11,10 +11,7 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 
-import java.sql.SQLOutput;
-import java.text.BreakIterator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -27,6 +24,7 @@ public class US25_ConfigureMenuStepDefs {
 
     @When("the user clicks configure menu option")
     public void the_user_clicks_configure_menu_option() {
+        BrowserUtils.waitFor(2);
         configureMenuPage.configMenu.click();
     }
 
@@ -99,6 +97,7 @@ public class US25_ConfigureMenuStepDefs {
         String newLink="https://www."+link+"/";
 
         configureMenuPage.nameInput.sendKeys(name+ Keys.ENTER);
+        BrowserUtils.waitFor(2);
         configureMenuPage.linkInput.sendKeys(newLink+Keys.ENTER);
 
     }
@@ -139,7 +138,7 @@ public class US25_ConfigureMenuStepDefs {
     public void the_input_boxes_should_return_to_red_color() {
 
         if(configureMenuPage.nameInput.getText().isEmpty()){
-           assertTrue(configureMenuPage.errorColorName.isDisplayed());
+            assertTrue(configureMenuPage.errorColorName.isDisplayed());
         }else if(configureMenuPage.linkInput.getText().isEmpty()){
             assertTrue(configureMenuPage.errorColorLink.isDisplayed());
         }else{
@@ -213,6 +212,7 @@ public class US25_ConfigureMenuStepDefs {
     @When("clicks to pen sign")
     public void clicks_to_pen_sign() {
         configureMenuPage.penSign.click();
+        BrowserUtils.waitFor(3);
     }
 
 
@@ -314,25 +314,25 @@ public class US25_ConfigureMenuStepDefs {
 
     @When("user clicks to more option")
     public void user_clicks_to_more_option() {
-       configureMenuPage.more.click();
+        configureMenuPage.more.click();
     }
 
 
     @Then("the hidden window should be display")
     public void the_hidden_window_should_be_display() {
-       configureMenuPage.hiddenWindow.isDisplayed();
-       assertTrue(configureMenuPage.hiddenWindow.isDisplayed());
+        configureMenuPage.hiddenWindow.isDisplayed();
+        assertTrue(configureMenuPage.hiddenWindow.isDisplayed());
     }
 
 
     @Then("user should be able to see default options")
     public void user_should_be_able_to_see_default_options(List<String> expectedList) {
-       List<String> actualList= new ArrayList<>();
+        List<String> actualList= new ArrayList<>();
 
-       for (WebElement item: configureMenuPage.hiddenItems){
-           BrowserUtils.waitFor(3);
-           actualList.add(item.getText());
-       }
+        for (WebElement item: configureMenuPage.hiddenItems){
+            BrowserUtils.waitFor(3);
+            actualList.add(item.getText());
+        }
         System.out.println("expectedList = " + expectedList);
         System.out.println("actualList = " + actualList);
         if(actualList.contains(expectedList.get(0)) && actualList.contains(expectedList.get(1))){
@@ -379,6 +379,7 @@ public class US25_ConfigureMenuStepDefs {
         switch(button){
             case "Delete":
                 Driver.get().findElement(By.xpath(path)).click();
+                BrowserUtils.waitFor(3);
                 break;
             case "Cancel":
                 Driver.get().findElement(By.xpath(path)).click();
@@ -394,6 +395,9 @@ public class US25_ConfigureMenuStepDefs {
 
         List<WebElement> actualItems = Driver.get().findElements(By.cssSelector(".menu-item-link-text"));
 
+        List<String> notExpectedItem= new ArrayList<>();
+        notExpectedItem.add(createdCustMenuName);
+
         List<String> actualItemList= new ArrayList<>();
 
         BrowserUtils.waitForPageToLoad(3);
@@ -402,35 +406,11 @@ public class US25_ConfigureMenuStepDefs {
         }
 
         System.out.println("actualItemList = " + actualItemList);
-        System.out.println("createdCustMenuName = " + createdCustMenuName);
-       // assertFalse("created custom menu name should NOT be in the list",items.contains(createdCustMenuName));
+        System.out.println("notExpectedItem = " + notExpectedItem);
 
-        for(String nameItem: actualItemList){
-            if(nameItem.contains(createdCustMenuName)){
-                assertTrue(false);
-            }else{
-                assertTrue(true);
-            }
-        }
+        assertFalse("created custom menu name should NOT be in the list",actualItemList.containsAll(notExpectedItem));
 
 
-
-
-//
-//        String path= "//span[.='"+createdCustMenuName+"']";
-//        WebElement element = Driver.get().findElement(By.xpath(path));
-//        assertTrue(element.isEnabled());
-
-
-//        assertTrue(items.contains(actualItem));
-
-       // assertTrue(!(items.contains(createdCustMenuName)));
-//
-//        if(items.contains(createdCustMenuName)){
-//            assertTrue(false);
-//        }else{
-//            assertTrue(true);
-//        }
 
     }
 
@@ -440,18 +420,18 @@ public class US25_ConfigureMenuStepDefs {
     @Then("verify system displays menu items")
     public void verify_system_displays_menu_items(List<String> expectedList) {
 
-        List<WebElement> actualItems = Driver.get().findElements(By.cssSelector(".menu-item-link-text"));
+        //List<WebElement> actualItems = Driver.get().findElements(By.cssSelector(".menu-item-link-text"));
 
         List<String> actualList= new ArrayList<>();
 
         BrowserUtils.waitForPageToLoad(3);
-        for (WebElement item: actualItems){
+        for (WebElement item: configureMenuPage.allMenuItems){
             actualList.add(item.getText());
         }
         System.out.println("actualList = " + actualList);
         System.out.println("expectedList = " + expectedList);
 
-        assertTrue("Ecpected list should contain actual list",actualList.contains(expectedList));
+        assertTrue("Expected list should contain actual list",actualList.containsAll(expectedList));
 
     }
 
@@ -461,6 +441,7 @@ public class US25_ConfigureMenuStepDefs {
     public void user_accepts_the_pop_up() {
         Alert alert= Driver.get().switchTo().alert();
         alert.accept();
+        BrowserUtils.waitFor(3);
     }
 
 
