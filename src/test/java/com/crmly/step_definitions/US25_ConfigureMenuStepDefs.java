@@ -7,11 +7,13 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.sql.SQLOutput;
 import java.text.BreakIterator;
 import java.util.ArrayList;
 import java.util.List;
@@ -150,7 +152,7 @@ public class US25_ConfigureMenuStepDefs {
 
     @When("user clicks created custom menu which is {string}")
     public void user_clicks_created_custom_menu_which_is(String titleOfLink) {
-        String path="//*[@title='"+titleOfLink+"']";
+        String path="//a[.='"+titleOfLink+"']/span";
         WebElement customMenu = Driver.get().findElement(By.xpath(path));
         BrowserUtils.waitForClickablility(customMenu,5);
         customMenu.click();
@@ -178,11 +180,33 @@ public class US25_ConfigureMenuStepDefs {
     }
 
 
+
+    @Then("switch to previous page")
+    public void switch_to_previous_page() {
+        String currentWindowHandle= Driver.get().getWindowHandle(); //current window handle -id
+        Set<String> otherWindowHandles= Driver.get().getWindowHandles(); // since it's Set, it doesn't have order also it removes duplicate ones
+        String titleBeforeNewTab= Driver.get().getTitle();
+
+        for(String windowHandle: otherWindowHandles){
+
+            if(!(windowHandle.equals(currentWindowHandle))){
+                Driver.get().switchTo().window(windowHandle);
+
+            }
+        }
+
+        assertNotEquals("Make sure the titles re not same",Driver.get().getTitle(),titleBeforeNewTab);
+
+        System.out.println("titleBeforeNewTab = " + titleBeforeNewTab);
+        System.out.println("New Tab Title = " + Driver.get().getTitle());
+    }
+
+
     @When("user hover over to created menu which is {string}")
     public void user_hover_over_to_created_menu_which_is(String title) {
-        WebElement createdCustMenu= Driver.get().findElement(By.xpath("//a[@title='"+title+"']"));
+        WebElement createdCustMenu= Driver.get().findElement(By.xpath("//a[.='"+title+"']/span"));
         BrowserUtils.hover(createdCustMenu);
-        BrowserUtils.waitForClickablility(configureMenuPage.penSign,3);
+        //BrowserUtils.waitForClickablility(configureMenuPage.penSign,3);
     }
 
 
@@ -329,7 +353,7 @@ public class US25_ConfigureMenuStepDefs {
 
     @When("user hovers over to created menu which is {string}")
     public void userHoversOverToCreatedMenuWhichIs(String title) {
-        WebElement createdCustMenu= Driver.get().findElement(By.xpath("//a[@title='"+title+"']"));
+        WebElement createdCustMenu= Driver.get().findElement(By.xpath("//a[.='"+title+"']/span"));
         BrowserUtils.hover(createdCustMenu);
         //BrowserUtils.waitForClickablility(configureMenuPage.penSignHidden,5);
     }
@@ -339,4 +363,105 @@ public class US25_ConfigureMenuStepDefs {
         BrowserUtils.hover(configureMenuPage.penSignHidden);
         configureMenuPage.penSignHidden.click();
     }
+
+
+
+    @Then("user should be able to see the the Delete custom item window is displayed")
+    public void user_should_be_able_to_see_the_the_delete_custom_item_window_is_displayed() {
+        assertTrue(configureMenuPage.deleteWindow.isDisplayed());
+    }
+
+
+    @When("user clicks {string} button")
+    public void user_clicks_button(String button) {
+        String path="//span[.='"+button+"']";
+
+        switch(button){
+            case "Delete":
+                Driver.get().findElement(By.xpath(path)).click();
+                break;
+            case "Cancel":
+                Driver.get().findElement(By.xpath(path)).click();
+                break;
+            default:
+                System.out.println("Make sure user can click successfully delete or cancel button");
+        }
+    }
+
+
+    @Then("verify created {string} custom menu is not visible on the screen")
+    public void verify_created_custom_menu_is_not_visible_on_the_screen(String createdCustMenuName) {
+
+        List<WebElement> actualItems = Driver.get().findElements(By.cssSelector(".menu-item-link-text"));
+
+        List<String> actualItemList= new ArrayList<>();
+
+        BrowserUtils.waitForPageToLoad(3);
+        for (WebElement item: actualItems){
+            actualItemList.add(item.getText());
+        }
+
+        System.out.println("actualItemList = " + actualItemList);
+        System.out.println("createdCustMenuName = " + createdCustMenuName);
+       // assertFalse("created custom menu name should NOT be in the list",items.contains(createdCustMenuName));
+
+        for(String nameItem: actualItemList){
+            if(nameItem.contains(createdCustMenuName)){
+                assertTrue(false);
+            }else{
+                assertTrue(true);
+            }
+        }
+
+
+
+
+//
+//        String path= "//span[.='"+createdCustMenuName+"']";
+//        WebElement element = Driver.get().findElement(By.xpath(path));
+//        assertTrue(element.isEnabled());
+
+
+//        assertTrue(items.contains(actualItem));
+
+       // assertTrue(!(items.contains(createdCustMenuName)));
+//
+//        if(items.contains(createdCustMenuName)){
+//            assertTrue(false);
+//        }else{
+//            assertTrue(true);
+//        }
+
+    }
+
+
+
+
+    @Then("verify system displays menu items")
+    public void verify_system_displays_menu_items(List<String> expectedList) {
+
+        List<WebElement> actualItems = Driver.get().findElements(By.cssSelector(".menu-item-link-text"));
+
+        List<String> actualList= new ArrayList<>();
+
+        BrowserUtils.waitForPageToLoad(3);
+        for (WebElement item: actualItems){
+            actualList.add(item.getText());
+        }
+        System.out.println("actualList = " + actualList);
+        System.out.println("expectedList = " + expectedList);
+
+        assertTrue("Ecpected list should contain actual list",actualList.contains(expectedList));
+
+    }
+
+
+
+    @When("user accepts the pop up")
+    public void user_accepts_the_pop_up() {
+        Alert alert= Driver.get().switchTo().alert();
+        alert.accept();
+    }
+
+
 }

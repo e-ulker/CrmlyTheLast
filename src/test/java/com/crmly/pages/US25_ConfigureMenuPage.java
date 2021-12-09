@@ -43,7 +43,7 @@ public class US25_ConfigureMenuPage extends BasePage{
     @FindBy(css = "menu-form-input menu-form-input-error")
     public WebElement errorColorLink;
 
-    @FindBy(css = ".menu-fav-editable-btn.menu-favorites-btn.menu-fav-editable-btn-js.menu-fav-editable-btn-showed") // .menu-fav-editable-btn.menu-favorites-btn.menu-fav-editable-btn-js.menu-fav-editable-btn-showed
+    @FindBy(xpath = "//li[@class='menu-item-block' and @data-type='self']/span") // .menu-fav-editable-btn.menu-favorites-btn.menu-fav-editable-btn-js.menu-fav-editable-btn-showed
     public WebElement penSign;
 
     @FindBy(css = ".menu-popup-item-text")
@@ -64,8 +64,19 @@ public class US25_ConfigureMenuPage extends BasePage{
     @FindBy(xpath = "//ul[@id='left-menu-hidden-items-list']//li[@class='menu-item-block']//a//span[@class='menu-item-link-text']")
     public List<WebElement> hiddenItems;
 
-    @FindBy(xpath = "//li[@id='bx_left_menu_1587574693']//span[1]")
+    @FindBy(xpath = "//li[@class='menu-item-block' and @data-type='self']/span")
     public WebElement penSignHidden;
 
+    @FindBy(css = "#left-menu-delete-self-item")
+    public WebElement deleteWindow;
+
+    @FindBy(xpath = "//span[.='Delete']")
+    public WebElement delete_Btn;
+
+    @FindBy(xpath = "//span[.='Cancel']")
+    public WebElement cancel_Btn;
+
+    @FindBy(css = ".menu-item-link-text")
+    public List<WebElement> allMenuItems;
 
 }

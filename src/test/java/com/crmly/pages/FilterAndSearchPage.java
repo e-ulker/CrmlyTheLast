@@ -27,4 +27,15 @@ public class FilterAndSearchPage extends BasePage{
     @FindBy(xpath = "//span[@class='main-ui-filter-field-restore-items']")
     public WebElement restoredefault;
 
+    @FindBy(css = "[class='main-ui-filter-add-item']")
+    public WebElement saveFilter;
+
+    @FindBy(css = "[class='main-ui-filter-sidebar-edit-control']")
+    public WebElement filterName;
+
+    @FindBy(css = "[class='ui-btn ui-btn-success main-ui-filter-field-button main-ui-filter-save']")
+    public WebElement save;
+
+    @FindBy(xpath = "//*[contains(text(),'Message')]")
+    public WebElement verifyFilter;
 }

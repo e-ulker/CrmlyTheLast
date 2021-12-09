@@ -26,11 +26,14 @@ public class ApplicationsStepDefs {
 
     @Then("user should be able to display the new applications")
     public void userShouldBeAbleToDisplayTheNewApplications() {
+        application.marketplace.click();
         Assert.assertTrue(application.newApplications.size() > 0);
     }
 
     @And("user should be able to click VIEW")
     public void userShouldBeAbleToClickVIEW() {
+        application.marketplace.click();
+        BrowserUtils.waitFor(1);
         application.viewButton.click();
     }
 

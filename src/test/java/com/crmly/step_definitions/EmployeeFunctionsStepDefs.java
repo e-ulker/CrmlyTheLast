@@ -5,16 +5,20 @@ import com.crmly.pages.LoginPage;
 import com.crmly.utilities.BrowserUtils;
 import com.crmly.utilities.ConfigurationReader;
 import com.crmly.utilities.Driver;
+import com.github.javafaker.Faker;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 
 
 public class EmployeeFunctionsStepDefs {
 
     EmployeePage employeePage = new EmployeePage();
+    Faker faker = new Faker();
 
     @Given("User is on the login page")
     public void user_is_on_the_login_page() {
@@ -84,5 +88,53 @@ public class EmployeeFunctionsStepDefs {
     }
 
 
+    @And("User clicks Search by Alphabet")
+    public void userClicksSearchByAlphabet() {
+        employeePage.searchByAlphabet.click();
+    }
 
+    @And("User picks a letter to search an employee")
+    public void userPicksALetterToSearchAnEmployee() {
+        employeePage.searchByLetter("D");
+        String actualName = Driver.get().findElement(By.xpath("//a[normalize-space()='Cristopher Debua']")).getText();
+        Assert.assertTrue(actualName.contains("Debua"));
+    }
+
+    @And("User clicks on More button")
+    public void userClicksOnMoreButton() {
+        employeePage.moreButton.click();
+        BrowserUtils.waitFor(2);
+    }
+
+    @And("User clicks on Export to Excel")
+    public void userClicksOnExportToExcel() {
+        employeePage.exportButton.click();
+        BrowserUtils.waitFor(2);
+        Assert.assertTrue(employeePage.isFileDownloaded(employeePage.downloadPath,"users.xls"));
+        BrowserUtils.waitFor(2);
+    }
+
+    @When("User navigates Telephone Directory tab")
+    public void userNavigatesTelephoneDirectoryTab() {
+        employeePage.navigateToTab("Telephone Directory");
+    }
+
+    @Then("User should be able display Telephone Directory page")
+    public void userShouldBeAbleDisplayTelephoneDirectoryPage() {
+        Assert.assertEquals("Telephone Directory",employeePage.telDir.getText());
+    }
+
+    @And("User selects an employee to display send message option")
+    public void userSelectsAnEmployeeToDisplaySendMessageOption() {
+
+        for (int i = 0; i < 5; i++) {
+            employeePage.contactsList.get(i).click();
+            employeePage.sendMsgBtn.click();
+            employeePage.msgArea.sendKeys(faker.hitchhikersGuideToTheGalaxy().quote());
+            employeePage.msgArea.sendKeys(Keys.ENTER);
+            Assert.assertTrue(employeePage.sentMsg.isDisplayed());
+            employeePage.msgArea.sendKeys(Keys.ESCAPE);
+            Driver.get().navigate().back();
+        }
+    }
 }

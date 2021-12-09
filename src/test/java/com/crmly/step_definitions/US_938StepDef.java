@@ -7,6 +7,8 @@ import com.crmly.utilities.Driver;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 
 public class US_938StepDef {
@@ -69,5 +71,53 @@ public class US_938StepDef {
     @Then("Verify a checklist item is added")
     public void verifyAChecklistItemIsAdded() {
         tasksPage.checklistitem.isDisplayed();
+    }
+
+    @And("Things to do box is opened")
+    public void thingsToDoBoxIsOpened() {
+        tasksPage.thingsToDoBox.isDisplayed();
+    }
+
+    @And("Click on the seperator")
+    public void clickOnTheSeperator() {
+        tasksPage.separator.click();
+
+    }
+
+    @Then("Verify  the seperator is added")
+    public void verifyTheSeperatorIsAdded() {
+        tasksPage.separatorline.isDisplayed();
+
+    }
+
+    @And("Click on the checkbox near checklist")
+    public void clickOnTheCheckboxNearChecklist() {
+        tasksPage.deleteChecklist.click();
+    }
+
+    @Then("Verify the checklist item is deleted")
+    public void verifyTheChecklistItemIsDeleted() {
+        Assert.assertFalse(Boolean.parseBoolean("Element should not be visible"+ Driver.get().findElement(By.xpath("//*[contains(text(),'Testcase')]")).isDisplayed()));
+    }
+
+    @Then("Click on the title button")
+    public void clickOnTheTitleButton() {
+        Driver.get().switchTo().frame(tasksPage.iframe);
+        tasksPage.title.click();
+    }
+
+    @And("Write inside the title")
+    public void writeInsideTheTitle() {
+        tasksPage.title.sendKeys("Jenkins");
+    }
+
+    @And("Click on the Add Task button")
+    public void clickOnTheAddTaskButton() {
+        tasksPage.sendtask.click();
+    }
+
+    @Then("Verify Task is added")
+    public void verifyTaskIsAdded() {
+        tasksPage.AddedTask.isDisplayed();
     }
 }
