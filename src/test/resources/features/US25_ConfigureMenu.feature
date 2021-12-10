@@ -6,13 +6,13 @@ Feature: Configure Menu
   Background:
     Given  user should be able to login as "humanResource" successfully
 
-  @REM-1010
+  @REM-1010 @firstPart
   Scenario: User should see the menu pop up - AC1 //tc1
     When the user clicks configure menu option
     Then menu pop up should be display
 
 
-  @REM-1011
+  @REM-1011 @firstPart
   Scenario: User should see the right options inside the configuration menu pop up -AC1 //tc2
     When the user clicks configure menu option
     Then the system should display following options inside the configuration pop up window
@@ -24,7 +24,7 @@ Feature: Configure Menu
       | Reset menu                         |
 
 
-  @REM-1012
+  @REM-1012 @firstPart
   Scenario: User should see selected checkbox as a default -AC1 //tc3
     When the user clicks configure menu option
     And  the user hits "Add custom menu item" option from the menu pop up
@@ -33,7 +33,7 @@ Feature: Configure Menu
 
 
 
-  @REM-1013
+  @REM-1013 @firstPart
   Scenario: User should add custom menu -AC1 //tc4
     When the user clicks configure menu option
     And  the user hits "Add custom menu item" option from the menu pop up
@@ -49,7 +49,7 @@ Feature: Configure Menu
 
 
 
-  @REM-1014
+  @REM-1014 @firstPart
   Scenario: User should NOT add new custom menu which is same already exist one -AC1 //tc5
     When the user clicks configure menu option
     And  the user hits "Add custom menu item" option from the menu pop up
@@ -69,7 +69,7 @@ Feature: Configure Menu
 
 
 
-  @REM-1015
+  @REM-1015 @secondPart @again
   Scenario Outline: User should NOT add new custom menu if s/he lefts input box blank -AC1 //TC05
     When the user clicks configure menu option
     And  the user hits "Add custom menu item" option from the menu pop up
@@ -84,7 +84,7 @@ Feature: Configure Menu
 
 
 
-  @REM-1016
+  @REM-1016 @secondPart
   Scenario: User should open custom menu link in a new tab -AC2 //TC7
     Given the user clicks configure menu option
     And  the user hits "Add custom menu item" option from the menu pop up
@@ -104,7 +104,7 @@ Feature: Configure Menu
 
 
 
-  @REM-1017
+  @REM-1017 @secondPart
   Scenario: User should see the options -AC4 //TC08
     Given the user clicks configure menu option
     And  the user hits "Add custom menu item" option from the menu pop up
@@ -127,7 +127,7 @@ Feature: Configure Menu
 
 
 
-  @REM-1018
+  @REM-1018 @secondPart
   Scenario: User should see the edit custom menu -AC4
     Given the user clicks configure menu option
     And  the user hits "Add custom menu item" option from the menu pop up
@@ -148,7 +148,7 @@ Feature: Configure Menu
 
 
 
-  @REM-1019
+  @REM-1019 @secondPart
   Scenario: User should edit custom menu  -AC4
     Given the user clicks configure menu option
     And  the user hits "Add custom menu item" option from the menu pop up
@@ -172,7 +172,7 @@ Feature: Configure Menu
 
 
 
-  @REM-1020
+  @REM-1020 @secondPart
   Scenario: User should be hide custom menu item  -AC5
     Given the user clicks configure menu option
     And  the user hits "Add custom menu item" option from the menu pop up
@@ -193,7 +193,7 @@ Feature: Configure Menu
 
 
 
-  @REM-1021
+  @REM-1021 @thirdPart
   Scenario: User should be see the hidden pop up window -AC6
     Given the user clicks configure menu option
     And  the user hits "Add custom menu item" option from the menu pop up
@@ -216,7 +216,7 @@ Feature: Configure Menu
 
 
 
-  @REM-1022
+  @REM-1022 @thirdPart
   Scenario: User should be see the default hidden items -AC6
     When user clicks to more option
     Then user should be able to see default options
@@ -229,7 +229,7 @@ Feature: Configure Menu
 
 
 
-  @REM-1023
+  @REM-1023 @thirdPart
   Scenario: User should be able to show the custom item -AC7
     Given the user clicks configure menu option
     And  the user hits "Add custom menu item" option from the menu pop up
@@ -256,7 +256,7 @@ Feature: Configure Menu
 
 
 
-  @REM-1025
+  @REM-1025 @thirdPart
   Scenario: User should be able to see "Delete custom item" window on the screen -AC3
     Given the user clicks configure menu option
     And  the user hits "Add custom menu item" option from the menu pop up
@@ -276,7 +276,7 @@ Feature: Configure Menu
 
 
 
-  @REM-1026 @onlyOne
+  @REM-1026 @onlyOne @thirdPart
   Scenario: User should be able to delete the created custom item -AC3
     Given the user clicks configure menu option
     And  the user hits "Add custom menu item" option from the menu pop up
@@ -295,7 +295,7 @@ Feature: Configure Menu
 
 
 
-  @REM-1027
+  @REM-1027 @thirdPart
   Scenario: User should can reset the menu
     Given the user clicks configure menu option
     And  the user hits "Add custom menu item" option from the menu pop up
