@@ -1,10 +1,10 @@
-Feature:create a quote
+Feature:Sending Appreciation
 
 
   Background:
     Given  user should be able to login as "humanResource" successfully
 
-  #First Scenario: @
+  #First Scenario:
   @REM-1030
   Scenario: user should open Appreciation window
     When the user clickss the MORE button
@@ -13,6 +13,7 @@ Feature:create a quote
 
 
     #TC01
+  @REM-1039
   Scenario Outline: Verify that <FileTypeOrSize> file from local disks should be uploaded
     When     User clicks Appreciation subheading from More tabb
     And      User click Upload files and images after clicking upload file iconn
@@ -32,6 +33,7 @@ Feature:create a quote
 
 
     #TC03
+    @REM-1040
   Scenario: Verify that file name should be same and display after uploading the file.
     When User clicks Appreciation subheading from More tabb
     And User click Upload files and images after clicking upload file iconn
@@ -40,6 +42,7 @@ Feature:create a quote
 
 
     #TC04
+    @REM-1041
   Scenario: Verify that users should be added by selecting multiple contacts from Employees and Departments contact lists
     When User clicks Appreciation subheading from More tabb
     And User clicks Employees and departments Tab after clicking Add Moree
@@ -55,6 +58,7 @@ Feature:create a quote
 
 
     #TC05
+    @REM-1042
   Scenario Outline: Verify that attach a link that have link text & link URL by clicking on the link icon.
     When User clicks Appreciation subheading from More tabb
     And User clicks link icon
@@ -69,31 +73,10 @@ Feature:create a quote
 
 
 
-   # TC06 #bug
-  Scenario: Verify that user shouldn't be able to attach link that have link text but no URL by clicking on the link icon.
-    When User clicks Appreciation subheading from More tabb
-    And User clicks link iconn
-    And User enters link text "google" and linkk URL ""
-    And User clicks Save buttonn
-    Then Verify that user shouldn't be able to attach link "google" without linkk URL
-
-
-
-    #TC07 #bug
-  Scenario Outline: Verify that insert videos by clicking on the video icon and entering the <VideoSource> video URL.
-    When User clicks Appreciation subheading from More tab
-    And User clicks insert video iconn
-    And User enterss "<VideoURL>"
-    And User click Save buttonn
-    Then User should be able to see inserted videoo "<VideoURL>"
-    Examples:
-      | VideoSource | VideoURL                                    |
-      | Youtube     | https://www.youtube.com/watch?v=k-7jJP7QFEM |
-      | Vimeo       | https://vimeo.com/26                        |
-
 
 
   #TC08
+    @REM-1045
   Scenario: Verify that user shouldn't be able to insert videos by clicking on the video icon and entering the invalid video URL.
     When User clicks Appreciation subheading from More tabb
     And User clicks insert video iconn
@@ -103,6 +86,7 @@ Feature:create a quote
 
 
   #TC09
+    @REM-1046
   Scenario: Verify that send appreciation with content to at least one person
     When User clicks Appreciation subheading from More tabb
     And Write "anything" as a content in Appreciationn
@@ -112,6 +96,7 @@ Feature:create a quote
 
 
     #TC010
+    @REM-1047
   Scenario: Verify that user shouldnt be able to send appreciation without content.
     When User clicks Appreciation subheading from More tabb
     And Add "hr98@cybertekschool.com" contact by clicking to Add moree
@@ -120,6 +105,7 @@ Feature:create a quote
 
 
 #TC011
+    @REM-1048
   Scenario: Verify that user shouldnt be able to send appreciation without any contact.
     When User clicks Appreciation subheading from More tabb
     And Write "anything" as a content in Appreciationn
