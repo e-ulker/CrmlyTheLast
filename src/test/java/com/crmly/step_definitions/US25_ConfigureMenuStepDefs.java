@@ -94,11 +94,18 @@ public class US25_ConfigureMenuStepDefs {
 
     @When("user adds custom menu as {string} to redirect {string}")
     public void user_adds_custom_menu_as_to_redirect(String name, String link) {
-        String newLink="https://www."+link+"/";
 
-        configureMenuPage.nameInput.sendKeys(name+ Keys.ENTER);
-        BrowserUtils.waitFor(2);
-        configureMenuPage.linkInput.sendKeys(newLink+Keys.ENTER);
+        if(link.isEmpty()){
+            configureMenuPage.nameInput.sendKeys(name+ Keys.ENTER);
+            BrowserUtils.waitFor(2);
+            configureMenuPage.linkInput.sendKeys(link+Keys.ENTER);
+        }else{
+            String newLink="https://www."+link+"/";
+
+            configureMenuPage.nameInput.sendKeys(name+ Keys.ENTER);
+            BrowserUtils.waitFor(2);
+            configureMenuPage.linkInput.sendKeys(newLink+Keys.ENTER);
+        }
 
     }
 
@@ -138,6 +145,7 @@ public class US25_ConfigureMenuStepDefs {
     public void the_input_boxes_should_return_to_red_color() {
 
         if(configureMenuPage.nameInput.getText().isEmpty()){
+            BrowserUtils.waitFor(2);
             assertTrue(configureMenuPage.errorColorName.isDisplayed());
         }else if(configureMenuPage.linkInput.getText().isEmpty()){
             assertTrue(configureMenuPage.errorColorLink.isDisplayed());
